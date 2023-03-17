@@ -1,0 +1,35 @@
+<?php
+require '../dbconnect.php';
+
+$sql = 'select * from question WHERE TaskId = ?';
+$stmt = $pdo->prepare($sql);
+$stmt->execute(array($_POST['task_id']));
+
+$task_id = $_POST['task_id'];
+$questoin_num = 1;
+?>
+<form action="result.php" method="post">
+    <input type="hidden" name="task_id" value="<?php echo $task_id ?>">
+<?php
+  while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
+    echo $questoin_num.".";
+    $questoin_num++;
+  ?>
+  <?php
+    if($result['type'] == 'select'):
+      $select = explode(',',$result['choice']);
+  ?>
+    <p><?php echo $result['sentence'] ?></p>  
+    <?php for($i=0;$i < count($select);$i++):?>
+      <label><input type="radio" name='question<?php echo $result['number'] ?>' 
+              value="<?php echo ($i+1) ?>"><?php echo $select[$i] ?></label>
+    <?php endfor; ?>
+  <?php elseif($result['type'] == 'writing'): ?>
+    <p><?php echo $result['sentence'] ?></p>
+    <textarea col="40" row="10" name="question<?php echo $result['number'] ?>"></textarea>
+  <?php endif; ?>
+  <hr>
+  <br>
+<?php endwhile; ?>
+<input type = "submit" value="送信">
+</form>

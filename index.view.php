@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <h1>ホーム</h1>
+  <p>User:<?php print $_SESSION['name']; ?></p>
+  <p>Class:<?php print $_SESSION['class']; ?></p>
+  <p>Number:<?php print $_SESSION['number']; ?></p>
+  <?php if($_SESSION['authority'] == 'T'):  ?>
+      <a href="task_Mgmt/task_list.php">課題管理</a>
+      <a href="user_Mgmt/Mgmt_menu.php">ユーザ管理</a>
+  <?php endif; ?> 
+    <table>
+      <tr>
+    <?php for($i=0;$i<7;$i++): ?>
+      <th><?php echo date("m-d",strtotime('+'.$i.' day')); ?></th>
+    <?php endfor; ?>
+    </tr>
+      <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+      <tr>
+      <?php for($i=0;$i<7;$i++): ?>
+      <?php if(date("Y-m-d") == $result['startDay'] &&
+       date("Y-m-d",strtotime('+'.$i.' day')) <= $result['endDay']):?>
+        <td>
+        <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
+          <?php echo $result['task_name']?>
+        </a>
+        </td>
+        <?php else: ?>
+          <td>　</td>
+        <?php endif ?>
+    <?php endfor; ?>
+    </tr>
+    <?php endwhile; ?>
+    </table>
+</body>
+</html>
