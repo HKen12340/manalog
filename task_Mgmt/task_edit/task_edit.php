@@ -11,11 +11,11 @@
   <form action="task_edit_db.php" method = "post">
   <table>
     <tr>
-      <th>テスト名</th><td><input type="text" name = "name"></td>
+      <td>テスト名:<input type="text" name = "name"></td>
     </tr>
     <tr>
-      <th>公開クラス</th>
       <td>
+      公開クラス:
         <select name="class">
           <option value="1T1">1T1</option>
           <option value="1T2">1T2</option>
@@ -24,8 +24,16 @@
       </td>
     </tr>
     <tr>
-    開始日: <input type="date" name="startDay">
-<br>締切日: <input type="date" name = "endDay">
+  <td>公開日: <input type="date" name="startDay"></td>
+    </tr>
+    <tr>
+    <td>締切日: <input type="date" name = "endDay"></td>
+    </tr>
+    <tr>
+    <td>解答回数制限：<select name="answer_limit">
+        <option value="0">制限なし</option>
+        <option value="1">1回まで</option>
+      </select></td>
     </tr>
   </table>
   <input type="submit" value="送信">

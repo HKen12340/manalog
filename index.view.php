@@ -24,7 +24,7 @@
       <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
       <tr>
       <?php for($i=0;$i<7;$i++): ?>
-      <?php if(date("Y-m-d") == $result['startDay'] &&
+      <?php if(date("Y-m-d") >= $result['startDay'] &&
        date("Y-m-d",strtotime('+'.$i.' day')) <= $result['endDay']):?>
         <td>
         <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
