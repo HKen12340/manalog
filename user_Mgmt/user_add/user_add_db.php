@@ -16,4 +16,5 @@ if($pdo == null){
   $stmt = $pdo->prepare($sql);
   $flag = $stmt->execute(array($user_name,$user_class,
   $user_number,$user_email,$user_password,$authority));
+  header('location:../user_list.php');
 }

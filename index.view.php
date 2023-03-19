@@ -14,7 +14,7 @@
   <p>Number:<?php print $_SESSION['number']; ?></p>
   <?php if($_SESSION['authority'] == 'T'):  ?>
       <a href="task_Mgmt/task_list.php">課題管理</a>
-      <a href="user_Mgmt/Mgmt_menu.php">ユーザ管理</a>
+      <a href="user_Mgmt/user_list.php">ユーザ管理</a>
   <?php endif; ?> 
     <table>
       <tr>
@@ -41,9 +41,7 @@
           <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
             <?php echo $result['task_name']?>
           </a>
-        </td>
-          <?php else: ?>
-              
+        </td> 
           <?php endif; ?>
         <?php else: ?>
           <td>　</td>
