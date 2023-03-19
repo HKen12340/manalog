@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<?php date_default_timezone_set('Asia/Tokyo');  ?>
 <body>
     <h1>ホーム</h1>
   <p>User:<?php print $_SESSION['name']; ?></p>
@@ -17,26 +18,39 @@
   <?php endif; ?> 
     <table>
       <tr>
-    <?php for($i=0;$i<7;$i++): ?>
-      <th><?php echo date("m-d",strtotime('+'.$i.' day')); ?></th>
-    <?php endfor; ?>
-    </tr>
+        <?php for($i=0;$i<7;$i++): ?>
+          <th><?php echo date("m-d",strtotime('+'.$i.' day')); ?></th>
+        <?php endfor; ?>
+      </tr>
       <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
       <tr>
-      <?php for($i=0;$i<7;$i++): ?>
-      <?php if(date("Y-m-d") >= $result['startDay'] &&
-       date("Y-m-d",strtotime('+'.$i.' day')) <= $result['endDay']):?>
-        <td>
-        <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
-          <?php echo $result['task_name']?>
-        </a>
+        <?php 
+          $flag = 0;
+          for($i=0;$i<7;$i++): 
+            if(date("Y-m-d") >= $result['startDay'] &&
+            date("Y-m-d",strtotime('+'.$i.' day')) <= $result['endDay']):
+              if($flag == 0): 
+                $flag = 1;
+                $date1 = new DateTime(date("Y-m-d"));
+                $date2 = new DateTime($result['endDay']);
+
+                $date3 = $date1->diff($date2);
+                $daydiff =  $date3->format('%a');
+        ?>
+        <td colspan="<?php echo $daydiff; ?>" style="background-color:yellow;text-align:center">
+          <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
+            <?php echo $result['task_name']?>
+          </a>
         </td>
+          <?php else: ?>
+              
+          <?php endif; ?>
         <?php else: ?>
           <td>　</td>
         <?php endif ?>
-    <?php endfor; ?>
+      <?php endfor; ?>
     </tr>
     <?php endwhile; ?>
-    </table>
+  </table>
 </body>
 </html>

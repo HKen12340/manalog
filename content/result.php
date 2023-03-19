@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require '../dbconnect.php';
 session_start();
 $select_sql = 'select DISTINCT task_id,user_id,answer_count from answer 
