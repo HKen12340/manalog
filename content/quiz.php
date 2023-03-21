@@ -1,7 +1,8 @@
 <?php
 require '../dbconnect.php';
 
-$sql = 'select * from question WHERE TaskId = ?';
+$sql = 'select * FROM question a left outer join question_image b
+ on a.TaskId = b.task_id and a.number = b.number WHERE a.TaskId = ?';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($_POST['task_id']));
 
@@ -14,8 +15,11 @@ $questoin_num = 1;
   while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
     echo $questoin_num.".";
     $questoin_num++;
+    if($result['file_name'] != null):
   ?>
+  <img  src="../task_Mgmt/question_add/uploads/<?php echo $result['file_name'] ?>" width="200px">
   <?php
+  endif;
     if($result['type'] == 'select'):
       $select = explode(',',$result['choice']);
   ?>
