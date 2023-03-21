@@ -30,10 +30,24 @@
     <td>締切日: <input type="date" name = "endDay"></td>
     </tr>
     <tr>
-    <td>解答回数制限：<select name="answer_limit">
-        <option value="0">制限なし</option>
-        <option value="1">1回まで</option>
-      </select></td>
+      <td>
+        解答回数制限：
+        <select name="answer_limit">
+          <option value="0">制限なし</option>
+          <option value="1">1回まで</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        背景色：
+        <select name="back_color">
+          <option value="yellow">黄</option>
+          <option value="red">赤</option>
+          <option value="#000099">青</option>
+          <option value="green">緑</option>
+        </select>
+      </td>
     </tr>
   </table>
   <input type="submit" value="送信">
