@@ -1,7 +1,7 @@
 <?php
 require '../dbconnect.php';
 
-$sql = 'select * from task';
+$sql = 'select * from task order by id desc';
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();

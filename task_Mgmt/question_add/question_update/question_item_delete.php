@@ -12,5 +12,4 @@ $stmt->execute(array($task_id));
 
 $stmt = $pdo->prepare($QItme_delete);
 $stmt->execute(array($task_id,$number));
-
-// header("location:../question_add.php?task_id=".$task_id);
+header("location:../question_add.php?task_id=".$task_id);
