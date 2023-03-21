@@ -37,7 +37,8 @@
                 $date3 = $date1->diff($date2);
                 $daydiff =  $date3->format('%a');
         ?>
-        <td colspan="<?php echo $daydiff + 1; ?>" style="background-color:yellow;text-align:center">
+        <td colspan="<?php echo $daydiff + 1; ?>" 
+        style="background-color:<?php echo  $result['back_color']?>;text-align:center">
           <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
             <?php echo $result['task_name']?>
           </a>
