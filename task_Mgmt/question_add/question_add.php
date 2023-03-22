@@ -8,7 +8,8 @@ $stmt->execute(array($_GET['task_id']));
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $task_id = $_GET['task_id'];
 
-$sql2 = 'select * from question WHERE TaskId = ?';
+$sql2 = 'select * FROM question a left outer join question_image b
+on a.TaskId = b.task_id and a.number = b.number WHERE a.TaskId = ?';
   $stmt2 = $pdo->prepare($sql2);
   $stmt2->execute(array($_GET['task_id']));
 

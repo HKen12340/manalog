@@ -3,10 +3,9 @@ $task_id =  $_POST['task_id'];
 $type = $_POST['question_type'];
 
  if($type == 'select'): ?>
-  <form action='question_add_db.php' method='post' enctype="multipart/form-data">
+<form action='question_add_db.php' method='post' enctype="multipart/form-data">
 
-  <input type='hidden' name='task_id'  value=<?php echo $task_id ?>>
-  
+  <input type='hidden' name='task_id'  value=<?php echo $task_id ?>>  
   <input type='hidden' name='question_type'  value=<?php echo $type ?>>
 
   <p>問題文</p>
@@ -51,11 +50,9 @@ $type = $_POST['question_type'];
       
       select_element.appendChild(new_div);
      }
-    },false);
-  
+    },false);  
   </script>
 <?php elseif($type == 'writing'): ?>
-
   <form action='question_add_db.php' method='post' enctype="multipart/form-data">
   <input type='hidden' name='task_id'  value=<?php echo $task_id ?>>
   <input type='hidden' name='question_type'  value=<?php echo $type ?>>
@@ -66,6 +63,7 @@ $type = $_POST['question_type'];
    <textarea cols='30' rows='5' name='answer'></textarea>
    画像：<input type="file" name="file">
    <input type='submit' value='登録'/>
-  </form>
+   </form>
+   <?php endif;?>
 
-<?php endif;?>
+

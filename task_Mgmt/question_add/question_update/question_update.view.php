@@ -8,9 +8,10 @@
 </head>
 <body>
 <a href="../question_add.php?task_id=<?php echo $_POST['task_id'] ?>">問題一覧へ戻る</a>
+
 <form action="question_updata_db.php" method = "post">
   <input type='hidden' name='task_id' value=<?php echo $_POST['task_id'] ?>>
-  <input type='hidden' name='number' value=<?php echo $result['number'] ?>>
+  <input type='hidden' name='number' value=<?php echo $result['number'] ?>> 
 <?php if($result['type'] == 'writing'): ?>
   <p>問題文</p>
   <textarea name = "sentence"><?php echo $result['sentence'] ?></textarea>

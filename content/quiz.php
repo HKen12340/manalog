@@ -17,6 +17,7 @@ $questoin_num = 1;
     $questoin_num++;
     if($result['file_name'] != null):
   ?>
+  <br>
   <img  src="../task_Mgmt/question_add/uploads/<?php echo $result['file_name'] ?>" width="200px">
   <?php
   endif;

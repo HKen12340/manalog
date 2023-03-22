@@ -20,11 +20,17 @@
 <input type='submit' value='作成'>
 </form>
   <?php  while($result2 = $stmt2->fetch(PDO::FETCH_ASSOC)): ?>
+    
     <form action='question_update/question_update.php' method='post'>
       <input type='hidden' name='task_id' value= <?php echo $_GET['task_id'] ?>>
       <input type='hidden' name='number' value=<?php echo $result2['number'] ?>>
+      
+      <p><?php echo $question_num .'. '. $result2['sentence']; ?></p>
+      <?php if($result2['file_name'] != null):?>
+        <img src = "uploads/<?php echo $result2['file_name']?>" width="100px">
+      <?php endif; ?>  
       <?php if($result2['type'] == 'select'): ?>
-        <p><?php echo $question_num .'. '. $result2['sentence']; ?></p>
+        
         <?php 
           $select = explode(',',$result2['choice']);
           for($i=0;$i < count($select);$i++):
@@ -33,7 +39,6 @@
         <?php endfor; ?>
         <p>解答:<?php echo $select[$result2['answer'] - 1]; ?></p>
       <?php elseif($result2['type'] == 'writing'): ?>
-        <p><?php echo $question_num.'. '.$result2['sentence']; ?></p>
         <p>解答：<?php echo $result2['answer']; ?></p>
       <?php endif; ?>
       <input type='submit' value='編集'/><br>
@@ -44,11 +49,8 @@
       <input type='hidden' name='number' value=<?php echo $result2['number'] ?>>
       <input type="submit" value="削除"> 
     </form>
-
     <hr>
-
   <?php
-  
   $question_num++;
   endwhile;
  ?>
