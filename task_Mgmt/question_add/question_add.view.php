@@ -45,7 +45,7 @@
     </form>
     
     <form action='question_update/question_item_delete.php' method='post'>
-    <input type='hidden' name='task_id' value= <?php echo $_GET['task_id'] ?>>
+      <input type='hidden' name='task_id' value= <?php echo $_GET['task_id'] ?>>
       <input type='hidden' name='number' value=<?php echo $result2['number'] ?>>
       <input type="submit" value="削除"> 
     </form>
