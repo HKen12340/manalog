@@ -4,6 +4,7 @@ require '../../dbconnect.php';
 $task_id =  $_POST['task_id'];
 $description =$_POST['description'];
 $question_type = $_POST['question_type'];
+$question_point = $_POST['point'];
 
 $sql = 'select quantity from task WHERE id = ?';
 $stmt = $pdo->prepare($sql);
@@ -33,21 +34,21 @@ $stmt->execute(array($number,$task_id));
 if($question_type == 'select'){ //選択問題DB登録
   $radio_select = $_POST['radio_select'];
   $select_csv = implode(',',$_POST['name']);
-  $sql = 'insert into question (number,TaskId,type,sentence,choice,answer) VALUES(?,?,?,?,?,?);
+  $sql = 'insert into question (number,TaskId,type,sentence,choice,answer,point) VALUES(?,?,?,?,?,?,?);
   insert into question_image (task_id,number,file_name) VALUES(?,?,?);';
 
   $stmt = $pdo->prepare($sql);
-  $stmt->execute(array($number,$task_id,$question_type,$description,$select_csv,$radio_select,
+  $stmt->execute(array($number,$task_id,$question_type,$description,$select_csv,$radio_select,$question_point,
   $task_id,$number,$fileName));
   
 }else if($question_type == 'writing'){ //記述問題DB登録
   $answer = $_POST['answer'];
-  $sql = 'insert into question (number,TaskId,type,sentence,answer)
-  VALUES(?,?,?,?,?);
+  $sql = 'insert into question (number,TaskId,type,sentence,answer,point)
+  VALUES(?,?,?,?,?,?);
   insert into question_image (task_id,number,file_name) VALUES(?,?,?);';
 
   $stmt = $pdo->prepare($sql);
-  $stmt->execute(array($number,$task_id,$question_type,$description,$answer
+  $stmt->execute(array($number,$task_id,$question_type,$description,$answer,$question_point
   ,$task_id,$number,$fileName));
 }
 

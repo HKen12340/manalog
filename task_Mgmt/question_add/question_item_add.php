@@ -15,7 +15,9 @@ $type = $_POST['question_type'];
     <div id='select_question'>
       
     </div>
-    画像：<input type="file" name="file" accept="image/*">
+    
+    <lebel>配点:<input type="text" name="point"></lebel><br>
+    <lebel>画像：<input type="file" name="file" accept="image/*"></lebel>
     <input type = 'submit' value = '登録'/>
   </form>
   <script>
@@ -61,7 +63,8 @@ $type = $_POST['question_type'];
   </br>
    <p>解答</p>
    <textarea cols='30' rows='5' name='answer'></textarea>
-   画像：<input type="file" name="file" accept="image/*">
+   <lebel>配点:<input type="text" name="point"></lebel><br>
+    <lebel>画像：<input type="file" name="file" accept="image/*"></lebel>
    <input type='submit' value='登録'/>
    </form>
    <?php endif;?>

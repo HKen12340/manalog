@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  
 <a href="../question_add.php?task_id=<?php echo $_POST['task_id'] ?>">問題一覧へ戻る</a>
 
 <form action="question_updata_db.php" method = "post">
@@ -17,13 +18,18 @@
   <textarea name = "sentence"><?php echo $result['sentence'] ?></textarea>
   <p>解答</p>
   <textarea name = "answer"><?php echo $result['answer'] ?></textarea>
-  <?php elseif($result['type'] == 'select'): 
-        $select = explode(',',$result['choice']);
+  <?php elseif($result['type'] == 'select'): ?>
+    <p>問題文</p>
+    <textarea name = "sentence"><?php echo $result['sentence'] ?></textarea>
+    <br>
+        <?php $select = explode(',',$result['choice']);
         for($i=0;$i < count($select);$i++): ?>
-          選択肢<?php echo ($i+1);?><input type="text" name="select[]" value= <?php echo $select[$i] ?>><br>
+          選択肢<?php echo ($i+1);?><input type="text" name="select[]" value= <?php echo $select[$i] ?>>
+          解答：<input type="radio" name="answer" value = "<?php echo $i + 1 ?>" 
+                <?php if($result['answer'] == ($i + 1)){ echo "checked"; }?>><br>
         <?php endfor ?>
 <?php endif ?>
-
+<br><label>配点:<input type="number" name="point" value="<?php echo $result['point'] ?>"></label>
 <input type="submit">
 </form>
 

@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+<?php error_reporting(0); ?>
 開始日: <input type="date">
 <br>締切日: <input type="date">
 <a href="../task_list.php">課題一覧へ戻る</a>
@@ -26,6 +27,7 @@
       <input type='hidden' name='number' value=<?php echo $result2['number'] ?>>
       
       <p><?php echo $question_num .'. '. $result2['sentence']; ?></p>
+      <p>配点<?php echo $result2["point"] ?>点</p>
       <?php if($result2['file_name'] != null):?>
         <img src = "uploads/<?php echo $result2['file_name']?>" width="100px">
       <?php endif; ?>  
