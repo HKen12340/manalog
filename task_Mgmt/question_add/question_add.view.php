@@ -21,11 +21,10 @@
 <input type='submit' value='作成'>
 </form>
   <?php  while($result2 = $stmt2->fetch(PDO::FETCH_ASSOC)): ?>
-    
+
     <form action='question_update/question_update.php' method='post'>
       <input type='hidden' name='task_id' value= <?php echo $_GET['task_id'] ?>>
       <input type='hidden' name='number' value=<?php echo $result2['number'] ?>>
-      
       <p><?php echo $question_num .'. '. $result2['sentence']; ?></p>
       <p>配点<?php echo $result2["point"] ?>点</p>
       <?php if($result2['file_name'] != null):?>
