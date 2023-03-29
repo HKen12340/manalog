@@ -16,6 +16,7 @@
       <a href="task_Mgmt/task_list.php">課題管理</a>
       <a href="user_Mgmt/user_list.php">ユーザ管理</a>
   <?php endif; ?> 
+  <a href="content/test_history/history.php">成績</a>
     <table>
       <tr>
         <?php for($i=0;$i<7;$i++): ?>
