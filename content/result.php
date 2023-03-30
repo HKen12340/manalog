@@ -9,7 +9,6 @@ $ans_stmt = $pdo->prepare($ans_select);
 $ans_stmt->execute(array($_POST['task_id'],$_SESSION['id']));
 $flag_result = $ans_stmt->fetch(PDO::FETCH_ASSOC);
 
-
  $answer_count = $flag_result['answer_count'];
 
 $select_sql = 'select * from question WHERE TaskId = ?';
@@ -19,7 +18,6 @@ $stmt->execute(array($_POST['task_id']));
 $insert_sql = 'insert into answer(task_id,number,user_anwser,
 user_id,answer_count,point) VALUES';
 $insert_args = [];
-
 
 $question_num = 1;
 
@@ -46,7 +44,6 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $args = [$_POST['task_id'],$number,$_POST['question'.$number],$_SESSION['id'],1,$point];
     $insert_args = array_merge($insert_args,$args);
     $insert_sql .= '(?,?,?,?,?,?),';
-
     $question_num++;
 }
 
