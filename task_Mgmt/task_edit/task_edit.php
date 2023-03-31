@@ -11,7 +11,7 @@
   <form action="task_edit_db.php" method = "post">
   <table>
     <tr>
-      <td>テスト名:<input type="text" name = "name"></td>
+      <td>テスト名:<input type="text" name = "name" required></td>
     </tr>
     <tr>
       <td>
@@ -24,10 +24,10 @@
       </td>
     </tr>
     <tr>
-  <td>公開日: <input type="date" name="startDay"></td>
+  <td>公開日: <input type="date" name="startDay" required></td>
     </tr>
     <tr>
-    <td>締切日: <input type="date" name = "endDay"></td>
+    <td>締切日: <input type="date" name = "endDay" required></td>
     </tr>
     <tr>
       <td>

@@ -11,10 +11,10 @@
   <form action="login.php" method = "post">
     <table>
     <tr>
-      <th>メールアドレス</th><td><input type="email" name= "email"></td>
+      <th>メールアドレス</th><td><input type="email" name= "email" required></td>
     </tr>
     <tr>
-      <th>パスワード</th><td><input type="password" name = "password"></td>
+      <th>パスワード</th><td><input type="password" name = "password" required></td>
     </tr>
     </table>
     <input type="submit" value = "送信">

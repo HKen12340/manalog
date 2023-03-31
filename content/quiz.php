@@ -2,11 +2,12 @@
 require '../dbconnect.php';
 
 $sql = 'select * FROM question a left outer join question_image b
- on a.TaskId = b.task_id and a.number = b.number WHERE a.TaskId = ?';
+ on a.TaskId = b.task_id and a.number = b.number WHERE a.TaskId = :TaskId';
 $stmt = $pdo->prepare($sql);
-$stmt->execute(array($_POST['task_id']));
+$stmt->bindValue(':TaskId',h($_POST['task_id']));
+$stmt->execute();
 
-$task_id = $_POST['task_id'];
+$task_id = h($_POST['task_id']);
 $questoin_num = 1;
 ?>
 <form action="result.php" method="post">

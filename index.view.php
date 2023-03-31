@@ -12,9 +12,10 @@
   <p>User:<?php print $_SESSION['name']; ?></p>
   <p>Class:<?php print $_SESSION['class']; ?></p>
   <p>Number:<?php print $_SESSION['number']; ?></p>
-  <?php if($_SESSION['authority'] == 'T'):  ?>
+  <?php if(h($_SESSION['authority']) == 'T'):  ?>
       <a href="task_Mgmt/task_list.php">課題管理</a>
       <a href="user_Mgmt/user_list.php">ユーザ管理</a>
+      <a href="content/test_history/student_history.php">生徒成績</a>
   <?php endif; ?> 
   <a href="content/test_history/history.php">成績</a>
     <table>
@@ -29,19 +30,19 @@
           $flag = 0;
           for($i=0;$i<7;$i++): 
             if(date("Y-m-d") >= $result['startDay'] &&
-            date("Y-m-d",strtotime('+'.$i.' day')) <= $result['endDay']):
+            date("Y-m-d",strtotime('+'.$i.' day')) <= h($result['endDay'])):
               if($flag == 0): 
                 $flag = 1;
                 $date1 = new DateTime(date("Y-m-d"));
-                $date2 = new DateTime($result['endDay']);
+                $date2 = new DateTime(h($result['endDay']));
 
                 $date3 = $date1->diff($date2);
                 $daydiff =  $date3->format('%a');
         ?>
         <td colspan="<?php echo $daydiff + 1; ?>" 
-        style="background-color:<?php echo  $result['back_color']?>;text-align:center">
-          <a href='content/kakunin.php?task_id=<?php echo $result['id'] ?>'>
-            <?php echo $result['task_name']?>
+        style="background-color:<?php echo  h($result['back_color'])?>;text-align:center">
+          <a href='content/kakunin.php?task_id=<?php echo h($result['id']) ?>'>
+            <?php echo h($result['task_name'])?>
           </a>
         </td> 
           <?php endif; ?>

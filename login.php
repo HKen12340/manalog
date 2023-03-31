@@ -6,9 +6,8 @@ $sql = 'select * from user_info';
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
-print($_POST['email']);
 while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
-  if($result['email'] == $_POST['email'] && $result['password'] == $_POST['password']){
+  if($result['email'] == h($_POST['email']) && $result['password'] == h($_POST['password'])){
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
     $_SESSION['class'] = $result['class'];
