@@ -1,6 +1,7 @@
 <?php 
-session_start();
 require '../../dbconnect.php';
+
+$student_id = $_POST['id'];
 
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
 quantity,time_stamp,startDay,endDay from ((answer a RIGHT OUTER join question q ON 
@@ -8,7 +9,7 @@ a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id =
 WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP BY task_id) GROUP BY task_id';
 
  $stmt = $pdo->prepare($sql);
- $stmt->execute(array($_SESSION['id']));
+ $stmt->execute(array($student_id));
 ?>
 <table>
   <tr>
@@ -25,9 +26,3 @@ WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP B
   </tr>
  <?php endwhile ?>
 </table>
-
-<?php /*
-  select  from ((task a left outer join question b on a.id = b.TaskId)
- left outer join answer c on b.number = c.number)where c.user_id = 4 and
- time_stamp=(select max(time_stamp) from answer) order by a.id ASC 
- */
