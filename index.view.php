@@ -30,11 +30,11 @@
           $flag = 0;
           for($i=0;$i<7;$i++): 
             if(date("Y-m-d") >= $result['startDay'] &&
-            date("Y-m-d",strtotime('+'.$i.' day')) <= h($result['endDay'])):
+            date("Y-m-d",strtotime('+'.$i.' day')) <= $result['endDay']):
               if($flag == 0): 
                 $flag = 1;
                 $date1 = new DateTime(date("Y-m-d"));
-                $date2 = new DateTime(h($result['endDay']));
+                $date2 = new DateTime($result['endDay']);
 
                 $date3 = $date1->diff($date2);
                 $daydiff =  $date3->format('%a');
@@ -42,7 +42,7 @@
         <td colspan="<?php echo $daydiff + 1; ?>" 
         style="background-color:<?php echo  h($result['back_color'])?>;text-align:center">
           <a href='content/kakunin.php?task_id=<?php echo h($result['id']) ?>'>
-            <?php echo h($result['task_name'])?>
+            <?php echo $result['task_name']?>
           </a>
         </td> 
           <?php endif; ?>

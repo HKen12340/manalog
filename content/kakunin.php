@@ -13,10 +13,12 @@ session_start();
 $select_sql = 'select DISTINCT a.user_id,a.task_id,
               a.answer_count,b.answer_limit from answer a
               INNER JOIN task b  ON a.task_id = b.id and
-              a.task_id = ? and a.user_id = ?';
+              a.task_id = :task_id and a.user_id = :id';
 $stmt = $pdo->prepare($select_sql);
 
-$stmt->execute(array($_GET['task_id'],$_SESSION['id']));
+$stmt->bindValue(':task_id',$_GET['task_id']);
+$stmt->bindValue(':id',$_SESSION['id']);
+$stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <body>

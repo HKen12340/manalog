@@ -27,29 +27,54 @@ if($_FILES["file"]["tmp_name"] != null){ //ファイルがアップされてい�
     //保留
   }
 }
-$sql = 'update task set quantity = ? WHERE id = ?';
+$sql = 'update task set quantity = :number WHERE id = :task_id';
 $stmt = $pdo->prepare($sql);
-$stmt->execute(array($number,$task_id));
+$stmt->bindValue(':number',$number);
+$stmt->bindValue('task_id',$task_id);
+$stmt->execute();
 
 if($question_type == 'select'){ //選択問題DB登録
   $radio_select = $_POST['radio_select'];
   $select_csv = implode(',',$_POST['name']);
-  $sql = 'insert into question (number,TaskId,type,sentence,choice,answer,point) VALUES(?,?,?,?,?,?,?);
-  insert into question_image (task_id,number,file_name) VALUES(?,?,?);';
+  $sql = 'insert into question (number,TaskId,type,sentence,choice,answer,point) 
+          VALUES(:number,:TaskId,:type,:sentence,:choice,:answer,:point);
+  insert into question_image (task_id,number,file_Name) VALUES(:task_id,:number2,:file_Name);';
 
   $stmt = $pdo->prepare($sql);
-  $stmt->execute(array($number,$task_id,$question_type,$description,$select_csv,$radio_select,$question_point,
-  $task_id,$number,$fileName));
+
+  $stmt->bindValue(':number',$number);
+  $stmt->bindValue(':TaskId',$task_id);
+  $stmt->bindValue(':type',$question_type);
+  $stmt->bindValue(':sentence',$description);
+  $stmt->bindValue(':choice',$select_csv);
+  $stmt->bindValue(':answer',$radio_select);
+  $stmt->bindValue(':point',$question_point);
+
+  $stmt->bindValue(':task_id',$task_id);
+  $stmt->bindValue(':number2',$number);
+  $stmt->bindValue(':file_Name',$fileName);
+  $stmt->execute();
   
 }else if($question_type == 'writing'){ //記述問題DB登録
   $answer = $_POST['answer'];
-  $sql = 'insert into question (number,TaskId,type,sentence,answer,point)
-  VALUES(?,?,?,?,?,?);
-  insert into question_image (task_id,number,file_name) VALUES(?,?,?);';
 
+  $sql = 'insert into question (number,TaskId,type,sentence,answer,point)
+  VALUES(:number,:TaskId,:type,:sentence,:answer,:point);
+  insert into question_image (task_id,number,file_name) VALUES(:task_id,:number2,:file_name);';
   $stmt = $pdo->prepare($sql);
-  $stmt->execute(array($number,$task_id,$question_type,$description,$answer,$question_point
-  ,$task_id,$number,$fileName));
+
+  $stmt->bindValue(':number',$number);
+  $stmt->bindValue(':TaskId',$task_id);
+  $stmt->bindValue(':type',$question_type);
+  $stmt->bindValue(':sentence',$description);
+  $stmt->bindValue(':answer',$answer);
+  $stmt->bindValue(':point',$question_point);
+
+  $stmt->bindValue(':task_id',$task_id);
+  $stmt->bindValue(':number2',$number);
+  $stmt->bindValue(':file_name',$fileName);
+  
+  $stmt->execute();
 }
 
 header('location: question_add.php?task_id='.$task_id);

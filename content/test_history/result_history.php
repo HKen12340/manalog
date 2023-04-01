@@ -11,9 +11,10 @@ error_reporting(0);
 require '../dbconnect.php';
 session_start();
 $ans_select = 'select DISTINCT task_id,user_id,answer_count from answer 
-where task_id = ? and user_id = ?';
+where task_id = :task_id and user_id = :user_id';
 $ans_stmt = $pdo->prepare($ans_select);
-
+$ans_stmt->bindValue(':task_id',$_POST['task_id']);
+$ans_stmt->bindValue(':user_id',$_SESSION['id']);
 $ans_stmt->execute(array($_POST['task_id'],$_SESSION['id']));
 $flag_result = $ans_stmt->fetch(PDO::FETCH_ASSOC);
 

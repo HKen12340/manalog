@@ -9,14 +9,14 @@ $type = $_POST['question_type'];
   <input type='hidden' name='question_type'  value=<?php echo $type ?>>
 
   <p>問題文</p>
-  <textarea cols='30' rows='5' name='description'></textarea>
+  <textarea cols='30' rows='5' name='description' required></textarea>
   </br>
   <input type='button' id='Addbutton' value='選択肢追加'>
     <div id='select_question'>
       
     </div>
     
-    <lebel>配点:<input type="text" name="point"></lebel><br>
+    <lebel>配点:<input type="number" name="point" required></lebel><br>
     <lebel>画像：<input type="file" name="file" accept="image/*"></lebel>
     <input type = 'submit' value = '登録'/>
   </form>
@@ -34,6 +34,7 @@ $type = $_POST['question_type'];
       let new_element = document.createElement('input');
       new_element.type = 'text';
       new_element.name = 'name[]';
+      new_element.required = true;
       input_label.appendChild(new_element);
 
       let radio_label = document.createElement('label');
@@ -42,6 +43,7 @@ $type = $_POST['question_type'];
       new_radio.type = 'radio';
       new_radio.name = 'radio_select';
       new_radio.value = select_number;
+      new_radio.required = true;
       
      select_number++;
 
@@ -59,11 +61,11 @@ $type = $_POST['question_type'];
   <input type='hidden' name='task_id'  value=<?php echo $task_id ?>>
   <input type='hidden' name='question_type'  value=<?php echo $type ?>>
   <p>問題文</p>
-  <textarea cols='30' rows='5' name='description'></textarea>
+  <input type="text" name='description' required>
   </br>
    <p>解答</p>
-   <textarea cols='30' rows='5' name='answer'></textarea>
-   <lebel>配点:<input type="text" name="point"></lebel><br>
+   <input type="text" name='answer' required>
+   <lebel>配点:<input type="number" name="point" required></lebel><br>
     <lebel>画像：<input type="file" name="file" accept="image/*"></lebel>
    <input type='submit' value='登録'/>
    </form>
