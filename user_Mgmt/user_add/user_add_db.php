@@ -1,12 +1,12 @@
 <?php
 require '../../dbconnect.php';
 
-$user_name = $_POST['name'];
-$user_class = $_POST['class'];
-$user_number = $_POST['number'];
-$user_email = $_POST['email'];
-$user_password = $_POST['password'];
-$authority = $_POST['authority'];
+$user_name = h($_POST['name']);
+$user_class = h($_POST['class']);
+$user_number = h($_POST['number']);
+$user_email = h($_POST['email']);
+$user_password = h($_POST['password']);
+$authority = h($_POST['authority']);
 
 if($pdo == null){
   print("接続に失敗しました");

@@ -13,7 +13,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
   <table>
     <tr>
       <td>
-        <label>名前<input type="text" name="name" value="<?php echo $result['name'] ?>"></label>
+        <label>名前<input type="text" name="name" value="<?php echo $result['name'] ?>" required></label>
       </td>
     </tr>
     <tr>
@@ -23,17 +23,17 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
     </tr>
     <tr>
       <td>
-        <label>番号<input type="number" name="number" value="<?php echo $result['number'] ?>"></label>
+        <label>番号<input type="number" name="number" value="<?php echo $result['number'] ?>" required></label>
       </td>
     </tr>
     <tr>
       <td>
-        <label>email<input type="email" name="email" value="<?php echo $result['email'] ?>"></label>
+        <label>email<input type="email" name="email" value="<?php echo $result['email'] ?>" required></label>
       </td>
     </tr>
     <tr>
       <td>
-        <label>パスワード<input type="password" name="password" value="<?php echo $result['password'] ?>"></label>
+        <label>パスワード<input type="password" name="password" value="<?php echo $result['password'] ?>" required></label>
       </td>
     </tr>
     <tr>
