@@ -12,9 +12,16 @@ if($pdo == null){
   print("接続に失敗しました");
 }else{  
   $sql = 'insert into user_info (name,class,number,email,password,authority)
-  VALUES(?,?,?,?,?,?)';
+  VALUES(:name,:class,:number,:email,:password,:authority)';
   $stmt = $pdo->prepare($sql);
-  $flag = $stmt->execute(array($user_name,$user_class,
-  $user_number,$user_email,$user_password,$authority));
+
+  $stmt->bindValue(':name',$user_name);
+  $stmt->bindValue(':class',$user_class);
+  $stmt->bindValue(':number',$user_number);
+  $stmt->bindValue(':email',$user_email);
+  $stmt->bindValue(':password',$user_password);
+  $stmt->bindValue(':authority',$authority);
+
+  $stmt->execute();
   header('location:../user_list.php');
 }

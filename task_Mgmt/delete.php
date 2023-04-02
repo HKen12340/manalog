@@ -1,15 +1,17 @@
 <?php
 require '../dbconnect.php';
 
-$task_id = $_GET['task_id'];
-$question_delete = 'delete from question where TaskId = ?;
-delete from question_image where task_id = ?';
-$task_delete = 'delete from task where id = ?';
-
-$stmt = $pdo->prepare($question_delete);
-$stmt->execute(array($task_id,$task_id));
+$task_id = h($_GET['task_id']);
+$task_delete = 'delete from question where TaskId = :task_id1;
+delete from question_image where task_id = :task_id2;
+delete from task where id = :task_id3';
 
 $stmt = $pdo->prepare($task_delete);
-$stmt->execute(array($task_id));
+
+$stmt->bindValue(':task_id1',$task_id);
+$stmt->bindValue(':task_id2',$task_id);
+$stmt->bindValue(':task_id3',$task_id);
+
+$stmt->execute();
 
 header("location:task_list.php");

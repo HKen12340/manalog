@@ -1,12 +1,29 @@
 <?php
 require '../../../dbconnect.php';
 
-$sql = 'update question set sentence = ?,choice=?,answer = ?,point = ?
- WHERE TaskId = ? and number = ?';
+$sentence = h($_POST['sentence']);
+$answer = h($_POST['answer']);
+$point = h($_POST['point']);
+$TaskId = h($_POST['task_id']);
+$number = h($_POST['number']);
+
+$sql = 'update question set sentence = :sentence,choice=:choice,answer = :answer,point = :point
+ WHERE TaskId = :TaskId and number = :number';
 $stmt = $pdo->prepare($sql);
 
+if(h($_POST['type'])=='select'){
 $select_csv = implode(',',$_POST['select']);
-$stmt->execute(array($_POST['sentence'],$select_csv,$_POST['answer'],$_POST['point'],
-$_POST['task_id'],$_POST['number']));
+$stmt->bindValue(':choice',$select_csv);
+}else{
+  $stmt->bindValue(':choice',null);
+}
 
-header('location: ../../task_list.php?task_id='.$_POST['task_id']);
+$stmt->bindValue(':sentence',$sentence);
+$stmt->bindValue(':answer',$answer);
+$stmt->bindValue(':point',$point);
+$stmt->bindValue(':answer',$answer);
+$stmt->bindValue(':TaskId',$TaskId);
+$stmt->bindValue(':number',$number);
+$stmt->execute();
+
+header('location: ../question_add.php?task_id='.$TaskId);

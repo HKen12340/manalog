@@ -6,10 +6,11 @@ $student_id = $_POST['id'];
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
 quantity,time_stamp,startDay,endDay from ((answer a RIGHT OUTER join question q ON 
 a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id = q.TaskId)
-WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP BY task_id) GROUP BY task_id';
+WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP BY task_id) GROUP BY task_id';
 
  $stmt = $pdo->prepare($sql);
- $stmt->execute(array($student_id));
+ $stmt->bindValue(':user_id',$student_id);
+ $stmt->execute();
 ?>
 <table>
   <tr>

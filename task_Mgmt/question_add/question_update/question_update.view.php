@@ -13,6 +13,7 @@
 <form action="question_updata_db.php" method = "post">
   <input type='hidden' name='task_id' value=<?php echo $_POST['task_id'] ?>>
   <input type='hidden' name='number' value=<?php echo $result['number'] ?>> 
+  <input type='hidden' name='type' value=<?php echo $result['type'] ?>> 
 <?php if($result['type'] == 'writing'): ?>
   <p>問題文</p>
   <textarea name = "sentence"><?php echo $result['sentence'] ?></textarea>
