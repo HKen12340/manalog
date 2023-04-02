@@ -4,7 +4,7 @@ require '../../dbconnect.php';
 $student_id = $_POST['id'];
 
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
-quantity,time_stamp,startDay,endDay from ((answer a RIGHT OUTER join question q ON 
+quantity,time_stamp,startDay,endDay,user_id from ((answer a RIGHT OUTER join question q ON 
 a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id = q.TaskId)
 WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP BY task_id) GROUP BY task_id';
 
@@ -24,6 +24,13 @@ WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` 
     <td><?php echo $result['time_stamp'] ?></td>
     <td><?php echo $result['startDay'] ?></td>
     <td><?php echo $result['endDay'] ?></td>
+    <td>
+      <form action="result_history.php" method="post">
+        <input type="hidden" name="task_id" value="<?php echo $result['task_id']?>">
+        <input type="hidden" name="user_id" value="<?php echo $result['user_id']?>">
+        <input type="submit" value="詳細">
+      </form>
+    </td>
   </tr>
  <?php endwhile ?>
 </table>

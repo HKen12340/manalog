@@ -22,6 +22,12 @@ WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP B
     <td><?php echo $result['time_stamp'] ?></td>
     <td><?php echo $result['startDay'] ?></td>
     <td><?php echo $result['endDay'] ?></td>
+    <td>
+      <form action="My_result_history.php" method="post">
+        <input type="hidden" name="task_id" value="<?php echo $result['task_id']?>">
+        <input type="submit" value="詳細">
+      </form>
+    </td>
   </tr>
  <?php endwhile ?>
 </table>
