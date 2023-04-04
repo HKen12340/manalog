@@ -51,9 +51,3 @@ while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
 
 echo $max_point."/".$total_point."点";
 ?>
-<button id = "top_button">トップメニューへ戻る</button>
-<script>
-  document.getElementById("top_button").addEventListener('click',function(){
-    location.href = "../index.php";
-  },false)
-</script>
