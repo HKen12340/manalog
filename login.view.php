@@ -19,7 +19,8 @@
       value=<?php if(!empty($_COOKIE['password'])){ echo $_COOKIE['password'];} ?>></td>
     </tr>
     <tr>
-      <td>ログイン情報を保存<input type="checkbox" name="check" value="1"></td>
+      <td>ログイン情報を保存<input type="checkbox" name="check" value="1" 
+      <?php if(!empty($_COOKIE['login_keep'])){  echo 'checked';}?>></td>
     </tr>
     </table>
     <input type="submit" value = "送信">
