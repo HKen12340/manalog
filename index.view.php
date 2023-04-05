@@ -18,6 +18,7 @@
       <a href="content/test_history/student_history.php">生徒成績</a>
   <?php endif; ?> 
   <a href="content/test_history/history.php">成績</a>
+  <a href="logout.php">ログアウト</a>
     <table>
       <tr>
         <?php for($i=0;$i<7;$i++): ?>

@@ -14,8 +14,12 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $_SESSION['number'] = $result['number'];
     $_SESSION['email'] = $result['email'];
     $_SESSION['authority'] = $result['authority'];
-    header('Location:index.php');
-    exit();
+    if(!empty($_POST['check'])){
+      setcookie("email",$_POST['email'],time()+(60*60*24)*7);
+      setcookie("password",$_POST['password'],time()+(60*60*24)*7);
+    }
+     header('Location:index.php');
+     exit();
   }
 }
 header('Location:login.view.php');
