@@ -1,0 +1,27 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+header{
+  display: flex;
+  background-color: green;
+  padding: 10px 0 10px 10px;
+}
+
+header p{
+  margin-left: 15px;
+}
+
+.test_table{
+  margin-top: 15px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.test_table th,td{
+  width: calc(100% / 7);
+  border: 1px solid black;
+}
+
+.test_table td{
+  height: 100px;
+}

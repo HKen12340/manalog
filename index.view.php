@@ -4,22 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
 <?php date_default_timezone_set('Asia/Tokyo');  ?>
 <body>
+  <header>
     <h1>ホーム</h1>
-  <p>User:<?php print $_SESSION['name']; ?></p>
-  <p>Class:<?php print $_SESSION['class']; ?></p>
-  <p>Number:<?php print $_SESSION['number']; ?></p>
-  <?php if(h($_SESSION['authority']) == 'T'):  ?>
-      <a href="task_Mgmt/task_list.php">課題管理</a>
-      <a href="user_Mgmt/user_list.php">ユーザ管理</a>
-      <a href="content/test_history/student_history.php">生徒成績</a>
-  <?php endif; ?> 
-  <a href="content/test_history/history.php">成績</a>
-  <a href="logout.php">ログアウト</a>
-    <table>
+    
+      <p>User:<?php print $_SESSION['name']; ?></p>
+      <p>Class:<?php print $_SESSION['class']; ?></p>
+      <p>Number:<?php print $_SESSION['number']; ?></p>
+      <?php if(h($_SESSION['authority']) == 'T'):  ?>
+          <p><a href="task_Mgmt/task_list.php">課題管理</a></p>
+          <p><a href="user_Mgmt/user_list.php">ユーザ管理</a></p>
+          <p><a href="content/test_history/student_history.php">生徒成績</a></p>
+      <?php endif; ?> 
+      <p><a href="content/test_history/history.php">成績</a></p>
+      <p><a href="logout.php">ログアウト</a></p>
+    
+  </header>
+    <table class="test_table">
       <tr>
         <?php for($i=0;$i<7;$i++): ?>
           <th><?php echo date("m-d",strtotime('+'.$i.' day')); ?></th>
