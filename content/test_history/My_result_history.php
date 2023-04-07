@@ -24,6 +24,7 @@ while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
   $max_point += $result['point'];
   echo $question_num.".";
 
+
   if($result['user_anwser'] == $result['answer']){
     print('〇');
     $point = $result['point'];
