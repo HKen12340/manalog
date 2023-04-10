@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/bootstrap4/css/bootstrap.min.css">
   <title>Document</title>
 </head>
+<?php require 'check.php' ?>
 <?php date_default_timezone_set('Asia/Tokyo');  ?>
 <body>
   <script src="css/bootstrap4/js/bootstrap.min.js"></script>
@@ -40,25 +41,6 @@
       </div>
   </nav>   
   
-  <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">Navbar</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">新規登録</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">データ一覧</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">エクスポート</a>
-                </li>
-            </ul>
-        </div>
-    </nav>   -->
     <table class="test_table">
       <tr>
         <?php for($i=0;$i<7;$i++): ?>

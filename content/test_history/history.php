@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require '../../dbconnect.php';
+require '../../check.php';
 
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
 quantity,time_stamp,startDay,endDay from ((answer a RIGHT OUTER join question q ON 

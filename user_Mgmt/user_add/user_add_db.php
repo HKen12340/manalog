@@ -1,6 +1,6 @@
 <?php
 require '../../dbconnect.php';
-
+require '../../check.php';
 $user_name = h($_POST['name']);
 $user_class = h($_POST['class']);
 $user_number = h($_POST['number']);

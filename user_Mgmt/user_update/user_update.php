@@ -1,5 +1,6 @@
 <?php
 require('../../dbconnect.php');
+require '../../check.php';
 $user_id = $_POST['id'];
 
 $sql = 'select * from user_info where id = ?';

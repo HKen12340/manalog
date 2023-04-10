@@ -1,5 +1,6 @@
 <?php 
 require '../../dbconnect.php';
+require '../../check.php';
 
 $student_id = $_POST['id'];
 

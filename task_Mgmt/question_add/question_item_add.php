@@ -1,4 +1,6 @@
 <?php
+require '../../check.php';
+
 $task_id =  $_POST['task_id'];
 $type = $_POST['question_type'];
 

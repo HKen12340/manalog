@@ -1,6 +1,6 @@
 <?php
 require '../../dbconnect.php';
-
+require '../../check.php';
 $test_name = h($_POST['name']);
 $class = h($_POST['class']);
 $startDay = h($_POST['startDay']);

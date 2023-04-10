@@ -1,5 +1,6 @@
 <?php
 require '../dbconnect.php';
+require '../check.php';
 
 $uesr_id = h($_POST['id']);
 $delete_sql = 'delete from answer where user_id = :user_id;

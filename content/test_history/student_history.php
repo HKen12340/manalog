@@ -1,5 +1,6 @@
 <?php
 require '../../dbconnect.php';
+require '../../check.php';
 
 $sql = 'select * from user_info';
 $stmt = $pdo->prepare($sql);

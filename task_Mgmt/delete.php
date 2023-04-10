@@ -1,5 +1,6 @@
 <?php
 require '../dbconnect.php';
+require '../check.php';
 
 $task_id = h($_GET['task_id']);
 $task_delete = 'delete from question where TaskId = :task_id1;

@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  <?php require '../../check.php'; ?>
   <h1>ユーザ登録画面</h1>
   <form action="user_add_db.php" method="post">
   <table>

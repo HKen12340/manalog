@@ -10,8 +10,11 @@
 .test_table th,td{
   width: calc(100% / 7);
   border: 1px solid black;
+  text-align: center;
 }
 
 .test_table td{
   height: 100px;
 }
+
+

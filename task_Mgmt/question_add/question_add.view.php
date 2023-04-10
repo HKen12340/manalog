@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  <?php require '../../check.php'; ?>
 <?php error_reporting(0); ?>
 開始日: <input type="date">
 <br>締切日: <input type="date">

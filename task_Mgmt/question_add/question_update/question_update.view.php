@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <?php require '../../../check.php'; ?>
 <a href="../question_add.php?task_id=<?php echo $_POST['task_id'] ?>">問題一覧へ戻る</a>
 
 <form action="question_updata_db.php" method = "post">

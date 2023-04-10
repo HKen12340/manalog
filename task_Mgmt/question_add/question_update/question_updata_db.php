@@ -1,5 +1,6 @@
 <?php
 require '../../../dbconnect.php';
+require '../../../check.php';
 
 $sentence = h($_POST['sentence']);
 $answer = h($_POST['answer']);

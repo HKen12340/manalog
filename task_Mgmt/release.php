@@ -1,5 +1,6 @@
 <?php
 require '../dbconnect.php';
+require '../check.php';
 
 $task_release = 0;
 if($_POST['task_release'] == 0){
