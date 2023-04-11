@@ -1,11 +1,13 @@
 <?php
 require('../dbconnect.php');
-require '../../check.php';
+require '../check.php';
 
 $sql = 'select * from user_info';
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 ?>
+   
+<?php require '../header.php' ?>
 <a href="user_add/user_add.php">新規作成</a>
 <h1>ユーザ一覧</h1>
 <table>

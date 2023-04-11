@@ -1,8 +1,8 @@
 <?php
 require '../../dbconnect.php';
+session_start();
 require '../../check.php';
 
-session_start();
 $ans_select = 'select * from ((answer a RIGHT OUTER join question q ON 
 a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id = q.TaskId)
 WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP BY task_id)  

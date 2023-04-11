@@ -2,7 +2,7 @@
 session_start();
 require '../../dbconnect.php';
 require '../../check.php';
-
+require '../../header.php' ;
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
 quantity,time_stamp,startDay,endDay from ((answer a RIGHT OUTER join question q ON 
 a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id = q.TaskId)

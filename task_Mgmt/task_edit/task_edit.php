@@ -8,6 +8,8 @@
 </head>
 <body>
   <?php  require '../../check.php';?>
+  <?php require '../../header.php'; ?>
+  
   <h1>テスト追加</h1>
   <form action="task_edit_db.php" method = "post">
   <table>

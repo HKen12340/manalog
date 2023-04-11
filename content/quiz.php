@@ -20,7 +20,7 @@ $questoin_num = 1;
     if(h($result['file_name']) != null):
   ?>
   <br>
-  <img  src="../task_Mgmt/question_add/uploads/<?php echo $result['file_name'] ?>" width="200px">
+  <img src="../task_Mgmt/question_add/uploads/<?php echo $result['file_name'] ?>" width="200px">
   <?php
   endif;
     if(h($result['type']) == 'select'):

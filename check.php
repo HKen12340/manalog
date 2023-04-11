@@ -1,6 +1,8 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){ //セッションを開始いるか確認
+  session_start();
+}
 
-if(!isset($_SESSION['name']) || !isset($_SESSION['id']) || !isset($_SESSION['email'])){
+if(empty($_SESSION['name']) || empty($_SESSION['id']) || empty($_SESSION['email'])){
   header('location:/manalog/login.view.php');
 }
