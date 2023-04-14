@@ -1,6 +1,7 @@
 <?php
 require '../dbconnect.php';
 require '../check.php';
+require '../simple_header.php';
 
 $sql = 'select * FROM question a left outer join question_image b
  on a.TaskId = b.task_id and a.number = b.number WHERE a.TaskId = :TaskId';

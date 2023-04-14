@@ -1,5 +1,6 @@
 <?php
 require '../../check.php';
+require '../../simple_header.php';
 
 $task_id =  $_POST['task_id'];
 $type = $_POST['question_type'];

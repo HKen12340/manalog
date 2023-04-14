@@ -12,7 +12,6 @@
 <?php require 'header.php' ?>
 <?php date_default_timezone_set('Asia/Tokyo');  ?>
 <body>
-  <!-- <script src="css/bootstrap4/js/bootstrap.min.js"></script> -->
      
     <table class="test_table">
       <tr>
@@ -49,5 +48,7 @@
     </tr>
     <?php endwhile; ?>
   </table>
+  <hr>
+  <p>© 2023 Example Inc. All Rights Reserved.</p>
 </body>
 </html>

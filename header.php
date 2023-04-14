@@ -4,10 +4,10 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <p class="nav-link">User:<?php print $_SESSION['name']; ?></p>
+          <p class="nav-link">User : <?php print $_SESSION['name']; ?></p>
         </li>
-        <?php if(h($_SESSION['authority']) == 'T'):  ?>
-          <li class="nav-item active">
+        <?php if($_SESSION['authority'] == 'T'):  ?>
+          <li class="nav-item">
             <a class="nav-link" href="/manalog/task_Mgmt/task_list.php">課題管理</a>
           </li>
           <li class="nav-item">
@@ -21,8 +21,9 @@
           <a class="nav-link" href="/manalog/content/test_history/history.php">成績</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="logout.php">ログアウト</a>
+          <a class="nav-link" href="/manalog/logout.php">ログアウト</a>
         </li>
        </ul>
       </div>
   </nav>
+  

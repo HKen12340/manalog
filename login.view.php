@@ -7,6 +7,9 @@
   <title>Document</title>
 </head>
 <body>
+  <header>
+    <?php require "simple_header.php" ?>
+  </header>
   <h1>ログイン</h1>
   <form action="login.php" method = "post">
     <table>

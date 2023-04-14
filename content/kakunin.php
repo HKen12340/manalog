@@ -9,6 +9,7 @@
 <?php
 error_reporting(0);
 require '../dbconnect.php';
+ require "../simple_header.php";
 require '../check.php';
 session_start();
 
@@ -29,6 +30,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php if($result['answer_limit'] != 0 && $result['answer_count'] >= $result['answer_limit']): ?>
       解答回数制限を超えました
     <?php else: ?>
+      <p>aaaaa</p>
     <input type="submit" value="開始"/>
     <?php endif; ?>
   </form>

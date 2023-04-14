@@ -7,6 +7,7 @@ $sql = 'select * from user_info';
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 ?>
+<h1>生徒解答履歴</h1>
 <table>
 <?php
 while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
