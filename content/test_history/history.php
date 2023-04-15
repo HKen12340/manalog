@@ -12,9 +12,14 @@ WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP B
  $stmt->execute(array($_SESSION['id']));
 ?>
 <h1>成績</h1>
-<table>
+<table class="table">
   <tr>
-    <td>課題名</td><td>点数</td><td>問題数</td><td>解答時刻</td><td>公開日</td><td>締め切り日</td>
+    <td>課題名</td>
+    <td>点数</td>
+    <td>問題数</td>
+    <td>解答時刻</td>
+    <td>公開日</td>
+    <td>締め切り日</td>
   </tr>
  <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
   <tr>

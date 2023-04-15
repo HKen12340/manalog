@@ -11,13 +11,40 @@ $stmt->execute();
 <a href="../index.php">トップメニューへ戻る</a>
 <h1>課題一覧</h1>
 <a href="task_edit/task_edit.php">課題作成</a>
-<table>
+<table class="table">
+  <tr>
+    <th>課題名</th>
+    <th>問題数</th>
+    <th>公開日</th>
+    <th>締め切り日</th>
+    <th>状態</th>
+    <th></th>
+    <th></th>
+  </tr>
 <?php 
 while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
   ?>
   <tr>
-  <td><a href='question_add/question_add.php?task_id=<?php echo $result['id']?>'>
-  <?php echo $result['task_name'] ?></a></td>
+    <td>
+      <a href='question_add/question_add.php?task_id=<?php echo $result['id']?>'>
+      <?php echo $result['task_name'] ?></a>
+    </td>
+    <td>
+      <?php echo $result['quantity']; ?>
+    </td>
+    <td>
+      <?php echo $result['startDay']; ?>
+    </td>
+    <td>
+      <?php echo $result['endDay']; ?>
+    </td>
+    <td>
+      <?php if($result['task_release'] == 1):?>
+        公開
+      <?php else: ?>
+        非公開
+      <?php endif; ?>
+    </td>
 
   <td>
     <form action="release.php" method = "post">
@@ -29,7 +56,7 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
       <input type="submit" value="非公開にする">
     <?php else: ?>
         <p>問題を作成してください</p>
-      <?php endif; ?>
+    <?php endif; ?>
   </form>
 </td>
 <td>

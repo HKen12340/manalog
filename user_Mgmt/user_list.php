@@ -8,13 +8,19 @@ $stmt->execute();
 ?>
    
 <?php require '../header.php' ?>
-<a href="user_add/user_add.php">新規作成</a>
 <h1>ユーザ一覧</h1>
-<table>
+<a href="user_add/user_add.php">新規作成</a>
+<table class = "table">
   <tr>
-    <th>ID</th><th>氏名</th><th>クラス</th>
-    <th>番号</th><th>メールアドレス</th>
-    <th>パスワード</th><th>権限</th>
+    <th>ID</th>
+    <th>氏名</th>
+    <th>クラス</th>
+    <th>番号</th>
+    <th>メールアドレス</th>
+    <th>パスワード</th>
+    <th>権限</th>
+    <th></th>
+    <th></th>
   </tr>
   <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)):?>
     <tr>
