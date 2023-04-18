@@ -28,5 +28,7 @@
     </table>
     <input type="submit" value = "送信">
   </form>
+  
+  <?php setcookie('PHPSESSID','',time()-1800,'/'); ?>
 </body>
 </html>

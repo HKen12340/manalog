@@ -1,8 +1,10 @@
 <?php 
 require '../../dbconnect.php';
 require '../../check.php';
+require '../../simple_header.php';
 
 $student_id = $_POST['id'];
+$student_name = $_POST['name'];
 
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
 quantity,time_stamp,startDay,endDay,user_id from ((answer a RIGHT OUTER join question q ON 
@@ -13,7 +15,9 @@ WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` 
  $stmt->bindValue(':user_id',$student_id);
  $stmt->execute();
 ?>
-<table>
+<div style="margin:auto;width:50%">
+<h1><?php echo $student_name;?>さんの成績</h1>
+<table class="table border">
   <tr>
     <td>課題名</td><td>点数</td><td>問題数</td><td>解答時刻</td><td>公開日</td><td>締め切り日</td>
   </tr>
@@ -35,3 +39,4 @@ WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` 
   </tr>
  <?php endwhile ?>
 </table>
+ </div>

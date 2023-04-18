@@ -8,4 +8,5 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':class',$_SESSION['class']);
 $stmt->execute();
 
+
 require 'index.view.php';

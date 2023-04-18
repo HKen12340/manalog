@@ -2,6 +2,7 @@
 require '../../dbconnect.php';
 session_start();
 require '../../check.php';
+require '../../simple_header.php';
 
 $ans_select = 'select * from ((answer a RIGHT OUTER join question q ON 
 a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id = q.TaskId)

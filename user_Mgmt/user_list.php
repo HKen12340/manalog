@@ -1,16 +1,17 @@
 <?php
-require('../dbconnect.php');
+require '../dbconnect.php';
 require '../check.php';
+require '../header.php';
 
 $sql = 'select * from user_info';
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 ?>
-   
-<?php require '../header.php' ?>
+
+<div style="margin:auto;width:70%">   
 <h1>ユーザ一覧</h1>
 <a href="user_add/user_add.php">新規作成</a>
-<table class = "table">
+<table class = "table border">
   <tr>
     <th>ID</th>
     <th>氏名</th>
@@ -43,7 +44,16 @@ $stmt->execute();
         <?php echo $result['password'] ?>
       </td>
       <td>
-        <?php echo $result['authority'] ?>
+        <?php
+        if($result['authority'] == 'T'){
+          echo "教員";
+        }elseif($result['authority'] == 'S'){
+          echo "生徒";
+        }else{
+          echo "権限が設定されていません";
+        }
+          
+         ?>
       </td>
       <td>
         <form action="user_update/user_update.php" method="post">
@@ -60,3 +70,4 @@ $stmt->execute();
     </tr>
   <?php endwhile; ?>
 </table>
+  </div>

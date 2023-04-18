@@ -3,6 +3,7 @@ error_reporting(0);
 require '../dbconnect.php';
 require '../check.php';
 require '../simple_header.php';
+
 session_start();
 $ans_select = 'select DISTINCT task_id,user_id,answer_count from answer 
 where task_id = :task_id and user_id = :user_id';

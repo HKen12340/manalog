@@ -16,3 +16,8 @@
 .test_table td{
   height: 100px;
 }
+
+.input_form{
+  margin:auto;
+  width:400px;
+}

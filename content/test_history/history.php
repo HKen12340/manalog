@@ -1,7 +1,7 @@
 <?php 
 session_start();
-require '../../dbconnect.php';
 require '../../check.php';
+require '../../dbconnect.php';
 require '../../header.php' ;
 $sql = 'select task_id,t.task_name,SUM(q.point) as "max_point",SUM(a.point) as "my_point",
 quantity,time_stamp,startDay,endDay from ((answer a RIGHT OUTER join question q ON 
@@ -11,15 +11,16 @@ WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP B
  $stmt = $pdo->prepare($sql);
  $stmt->execute(array($_SESSION['id']));
 ?>
+<div style="margin:auto;width:60%">
 <h1>成績</h1>
-<table class="table">
+<table class="table border">
   <tr>
-    <td>課題名</td>
-    <td>点数</td>
-    <td>問題数</td>
-    <td>解答時刻</td>
-    <td>公開日</td>
-    <td>締め切り日</td>
+    <th>課題名</th>
+    <th>点数</th>
+    <th>問題数</th>
+    <th>解答時刻</th>
+    <th>公開日</th>
+    <th>締め切り日</th>
   </tr>
  <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
   <tr>
@@ -38,9 +39,4 @@ WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP B
   </tr>
  <?php endwhile ?>
 </table>
-
-<?php /*
-  select  from ((task a left outer join question b on a.id = b.TaskId)
- left outer join answer c on b.number = c.number)where c.user_id = 4 and
- time_stamp=(select max(time_stamp) from answer) order by a.id ASC 
- */
+ </div>

@@ -8,13 +8,14 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
 ?>
-<a href="../index.php">トップメニューへ戻る</a>
+<div style="margin:auto;width:50%">
 <h1>課題一覧</h1>
 <a href="task_edit/task_edit.php">課題作成</a>
-<table class="table">
+<table class="table border">
   <tr>
     <th>課題名</th>
     <th>問題数</th>
+    <th>公開クラス</th>
     <th>公開日</th>
     <th>締め切り日</th>
     <th>状態</th>
@@ -31,6 +32,9 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
     </td>
     <td>
       <?php echo $result['quantity']; ?>
+    </td>
+    <td>
+      <?php echo $result['class']; ?>
     </td>
     <td>
       <?php echo $result['startDay']; ?>
@@ -65,3 +69,4 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
   </tr>
 <?php endwhile; ?>
 </table>
+    </div>
