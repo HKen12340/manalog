@@ -15,7 +15,6 @@ $ans_stmt->bindValue(':user_id',$_SESSION['id']);
 $ans_stmt->bindValue(':task_id',$_POST['task_id']);
 $ans_stmt->execute();
 
-
 $question_num = 1;
 $max_point = 0;
 $total_point = 0;
@@ -25,7 +24,6 @@ while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
   $description = $result['sentence'];
   $max_point += $result['point'];
   echo $question_num.".";
-
 
   if($result['user_anwser'] == $result['answer']){
     print('〇');

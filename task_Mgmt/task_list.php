@@ -8,7 +8,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
 ?>
-<div style="margin:auto;width:50%">
+<div style="margin:auto;width:70%">
 <h1>課題一覧</h1>
 <a href="task_edit/task_edit.php">課題作成</a>
 <table class="table border">

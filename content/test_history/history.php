@@ -11,7 +11,7 @@ WHERE user_id = ? and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP B
  $stmt = $pdo->prepare($sql);
  $stmt->execute(array($_SESSION['id']));
 ?>
-<div style="margin:auto;width:60%">
+<div style="margin:auto;width:70%">
 <h1>成績</h1>
 <table class="table border">
   <tr>
