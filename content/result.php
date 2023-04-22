@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
 <?php
 error_reporting(0);
 require '../dbconnect.php';
@@ -5,7 +8,10 @@ require '../check.php';
 require '../simple_header.php';
 
 session_start();
-$ans_select = 'select DISTINCT task_id,user_id,answer_count from answer 
+
+//SQL関連
+$ans_select = 'select DISTINCT task_id,user_id,answer_count,answer,choice,type,sentence
+from answer a LEFT OUTER JOIN question b on a.task_id = b.TaskId
 where task_id = :task_id and user_id = :user_id';
 $ans_stmt = $pdo->prepare($ans_select);
 $ans_stmt->bindValue(':task_id',$_POST['task_id']);
@@ -30,24 +36,48 @@ $max_point = 0;
 $total_point = 0;
 
 $question_counter = 0;
+?>
+<table>
+  <tr>
+    <th>番号</th>
+    <th>問題文</th>
+    <th>判定</th>
+    <th>正解</th>
+    <th>解答</th>
+  </tr>
+<?php
 while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+  echo "<tr>";
   $point = 0;
   $number = $result['number'];
   $description = $result['sentence'];
   $max_point += $result['point'];
 
-  echo $q_num.".";
-
+  echo "<div class='content_list'>";
+  echo "<td>".$q_num."</td>";
+  echo "<td>".$result['sentence']."</td>";
+  //正否判別
   if($_POST['question'.$number] == $result['answer']){
-    print('〇');
+    print('<td>〇</td>');
     $point = $result['point'];
     $total_point += $point;
   }else{
-    print('✕');
+    print('<td>✕</td>');
   }
-  print('<hr>');
+
+  //正解と自分の解答を表示
+  if($result['type'] == 'select'){
+    $a = explode(',',$result['choice']);
+    echo "<td>".$a[$result['answer'] - 1]."</td>";
+    echo "<td>".$a[$_POST['question'.$number] -1]."</td>";
+  }else if($result['type'] == 'writing'){
+    echo "<td>".$result['answer']."</td>";
+    echo "<td>".$_POST['question'.$number]."</td>";
+  }
+  echo "</div>";
   print('<br>');
 
+    //解答記録SQL作成
     $args[] = ['task_id' => $_POST['task_id'],'number' => $number,
     'question'=>$_POST['question'.$number],'id' => $_SESSION['id'],
     'answer_count' => 1,'point' => $point];
@@ -56,6 +86,7 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     :question'.$q_num.',:id'.$q_num.',1,:point'.$q_num.'),';
     $q_num++;
     $question_counter = $q_num;
+    echo "</tr>";
 }
 
   $insert_sql = substr($insert_sql,0,-1);
@@ -69,11 +100,17 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
      $stmt->bindValue(':id'.$i,$args[$i-1]['id']);
      $stmt->bindValue(':point'.$i,$args[$i-1]['point']);
    }
+   ?>
+</table>
+   <?php
   $stmt->execute();
-
- echo $max_point."/".$total_point."点";
+  echo "<div class='content_list'>";
+  echo $max_point."/".$total_point."点";
+  echo "</div>";
 ?>
-<button id = "top_button">トップメニューへ戻る</button>
+<div class='content_list'>
+  <button id = "top_button">トップメニューへ戻る</button>
+</div>
 <script>
   document.getElementById("top_button").addEventListener('click',function(){
     location.href = "../index.php";

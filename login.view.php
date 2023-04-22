@@ -30,10 +30,7 @@
       <br>
       <input type="submit"  value = "送信">
     </div>
-      
   </form>
-  
-  
   <?php setcookie('PHPSESSID','',time()-1800,'/'); ?>
 </body>
 </html>

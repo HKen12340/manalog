@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
 <?php
 require '../../dbconnect.php';
 session_start();
@@ -6,17 +10,21 @@ require '../../simple_header.php';
 
 $ans_select = 'select * from ((answer a RIGHT OUTER join question q ON 
 a.task_id = q.TaskId  and a.number = q.number) RIGHT OUTER JOIN task t ON t.id = q.TaskId)
-WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` GROUP BY task_id)  
+WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` WHERE 
+user_id = :ans_user_id GROUP BY task_id)  
 AND task_id = :task_id';
 
 $ans_stmt = $pdo->prepare($ans_select);
 $ans_stmt->bindValue(':user_id',$_POST['user_id']);
 $ans_stmt->bindValue(':task_id',$_POST['task_id']);
+$ans_stmt->bindValue(':ans_user_id',$_POST['user_id']);
 $ans_stmt->execute();
 
 $question_num = 1;
 $max_point = 0;
 $total_point = 0;
+
+echo "<div class='content_list'>";
 while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
   $point = 0;
   $number = $result['number'];
@@ -31,12 +39,26 @@ while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
   }else{
     print('✕');
   }
+
+  //正解と自分の解答を表示
+  if($result['type'] == 'select'){
+    $a = explode(',',$result['choice']);
+    echo $a[$result['answer'] - 1];
+    echo $a[$result['user_anwser'] - 1];
+  }else if($result['type'] == 'writing'){
+    echo $result['answer'];
+    echo $result['user_anwser'];
+  }
+  
+
+  echo "</div>";
   print('<hr>');
   print('<br>');
 
-    $question_num++;
+  $question_num++;
 }
 
-
+echo "<div class='content_list'>";
 echo $max_point."/".$total_point."点";
+echo "</div>";
 ?>

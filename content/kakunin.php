@@ -13,6 +13,7 @@ require '../dbconnect.php';
 require '../check.php';
 session_start();
 
+//SQl関連
 $select_sql = 'select DISTINCT a.user_id,a.task_id,
               a.answer_count,b.answer_limit,b.task_name from answer a
               INNER JOIN task b  ON a.task_id = b.id and
@@ -28,6 +29,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
   <div style="text-align:center;margin-top:10%">
   <form action="quiz.php" method = "post">
     <input type="hidden" name="task_id" value="<?php echo $_GET['task_id'] ?>">
+    <!-- 解答制限回数を超えているか -->
     <?php if($result['answer_limit'] != 0 && $result['answer_count'] >= $result['answer_limit']): ?>
       解答回数制限を超えました
     <?php else: ?>
