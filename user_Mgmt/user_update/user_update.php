@@ -31,9 +31,9 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
         <label>email</label>
         <input type="email" name="email" class="form-control" value="<?php echo $result['email'] ?>" required>      
         <label>パスワード</label>
-        <input type="password" name="password" class="form-control" value="<?php echo $result['password'] ?>" required>
+        <input type="password" name="password" class="form-control" required>
     </div>
-    <input type="submit" value="送信">
+    <input type="submit" class="btn btn-primary py-2 px-4" value="送信">
   </div>
 </form>
 </div>

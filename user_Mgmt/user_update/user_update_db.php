@@ -16,7 +16,7 @@
   $stmt->bindValue(':class',$user_class);
   $stmt->bindValue(':number',$user_number);
   $stmt->bindValue(':email',$user_email);
-  $stmt->bindValue(':password',$user_password);
+  $stmt->bindValue(':password',password_hash($user_password,PASSWORD_DEFAULT));
   $stmt->bindValue(':id',$user_id);
 
   $stmt->execute();

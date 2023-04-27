@@ -22,42 +22,50 @@ $ans_stmt->execute();
 $question_num = 1;
 $max_point = 0;
 $total_point = 0;
-
+?>
+<div class="score_table">
+<table>
+  <tr>
+    <th>番号</th>
+    <th>判定</th>
+    <th>問題文</th>
+    <th>正解</th>
+    <th>解答</th>
+  </tr>
+<?php
 while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
-  echo "<div class='content_list'>";
+  echo "<tr>";
   $point = 0;
   $number = $result['number'];
   $description = $result['sentence'];
   $max_point += $result['point'];
-  echo $question_num.".";
+  echo "<td>".$question_num."</td>";
+  echo "<td>".$result['sentence']."</td>";
 
   if($result['user_anwser'] == $result['answer']){
-    print('〇');
+    print('<td>〇</td>');
     $point = $result['point'];
     $total_point += $point;
   }else{
-    print('✕');
+    print('<td>✕</td>');
   }
 
   //正解と自分の解答を表示
   if($result['type'] == 'select'){
     $a = explode(',',$result['choice']);
-    echo $a[$result['answer'] - 1];
-    echo $a[$result['user_anwser'] - 1];
+    echo '<td>'.$a[$result['answer'] - 1]."</td>";
+    echo '<td>'.$a[$result['user_anwser'] - 1].'</td>';
   }else if($result['type'] == 'writing'){
-    echo $result['answer'];
-    echo $result['user_anwser'];
+    echo '<td>'.$result['answer'].'</td>';
+    echo '<td>'.$result['user_anwser'].'</td>';
   }
 
-  echo "</div>";
-  print('<hr>');
-  print('<br>');
-
+  echo "</tr>";
     $question_num++;
 }
-echo "<div class='content_list'>";
-echo $max_point."/".$total_point."点";
-echo "</div>";
-
+echo "<p style='text-align:center;'>".$max_point."/".$total_point."点</p>";
 ?>
+</table>
+<a href="history.php">戻る</a>
+</div>
 </script>

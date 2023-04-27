@@ -18,7 +18,6 @@ $stmt->execute();
     <th>クラス</th>
     <th>番号</th>
     <th>メールアドレス</th>
-    <th>パスワード</th>
     <th>権限</th>
     <th></th>
     <th></th>
@@ -41,9 +40,6 @@ $stmt->execute();
         <?php echo $result['email'] ?>
       </td>
       <td>
-        <?php echo $result['password'] ?>
-      </td>
-      <td>
         <?php
         if($result['authority'] == 'T'){
           echo "教員";
@@ -58,13 +54,13 @@ $stmt->execute();
       <td>
         <form action="user_update/user_update.php" method="post">
           <input type="hidden" name = "id" value="<?php echo $result['id'] ?>">
-          <input type="submit" value="編集">
+          <input type="submit" class="btn btn-primary py-2 px-4" value="編集">
         </form>
       </td>
       <td>
         <form action="user_delete.php" method="post">
           <input type="hidden" name = "id" value="<?php echo $result['id'] ?>">
-          <input type="submit" value="削除">
+          <input type="submit" class="btn btn-Danger py-2 px-4" value="削除">
         </form>
       </td>
     </tr>

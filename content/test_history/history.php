@@ -37,7 +37,7 @@ WHERE user_id = :user_id and time_stamp IN(SELECT MAX(time_stamp) FROM `answer` 
     <td>
       <form action="My_result_history.php" method="post">
         <input type="hidden" name="task_id" value="<?php echo $result['task_id']?>">
-        <input type="submit" value="詳細">
+        <input type="submit" class="btn btn-primary py-2 px-4" value="詳細">
       </form>
     </td>
   </tr>

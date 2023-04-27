@@ -23,42 +23,63 @@ $ans_stmt->execute();
 $question_num = 1;
 $max_point = 0;
 $total_point = 0;
+?>
 
-echo "<div class='content_list'>";
-while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)){
+<div class="score_table">
+<table >
+  <tr>
+      <th>番号</th>
+      <th>問題文</th>
+      <th>正否</th>
+      <th>正解</th>
+      <th>解答</th>
+  </tr>
+<?php
+while($result = $ans_stmt->fetch(PDO::FETCH_ASSOC)):
+  ?>
+  <tr>
+<?php
   $point = 0;
   $number = $result['number'];
-  $description = $result['sentence'];
   $max_point += $result['point'];
-  echo $question_num.".";
-
-  if($result['user_anwser'] == $result['answer']){
-    print('〇');
-    $point = $result['point'];
-    $total_point += $point;
-  }else{
-    print('✕');
-  }
-
-  //正解と自分の解答を表示
-  if($result['type'] == 'select'){
-    $a = explode(',',$result['choice']);
-    echo $a[$result['answer'] - 1];
-    echo $a[$result['user_anwser'] - 1];
-  }else if($result['type'] == 'writing'){
-    echo $result['answer'];
-    echo $result['user_anwser'];
-  }
-  
-
-  echo "</div>";
-  print('<hr>');
-  print('<br>');
-
-  $question_num++;
-}
-
-echo "<div class='content_list'>";
-echo $max_point."/".$total_point."点";
-echo "</div>";
 ?>
+<td>
+<?php echo $question_num; ?>
+</td>
+<td>
+  <?php echo $result['sentence']; ?>
+</td>
+<td>
+
+  <?php 
+    if($result['user_anwser'] == $result['answer']):
+      print('〇');
+      $point = $result['point'];
+      $total_point += $point;
+    else:
+      print('✕');
+    endif;
+  ?>
+</td>
+
+  <?php
+  //正解と自分の解答を表示
+  if($result['type'] == 'select'):
+    $a = explode(',',$result['choice']);
+    echo "<td>".$a[$result['answer'] - 1]."</td>";
+    echo "<td>".$a[$result['user_anwser'] - 1]."</td>";
+  elseif($result['type'] == 'writing'):
+    echo "<td>".$result['answer']."</td>";
+    echo "<td>".$result['user_anwser']."</td>";
+  endif;
+  ?>  
+  </tr>
+  <?php
+   $question_num++;
+   endwhile;
+
+   echo "<p style = 'text-align:center'>".$max_point."/".$total_point."点</p>";
+  ?>
+</table>
+<a href="score_history.php">戻る</a>
+</div>

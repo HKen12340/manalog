@@ -8,7 +8,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
 ?>
-<div style="margin:auto;width:70%">
+<div style="margin:auto;width:80%">
 <h1>課題一覧</h1>
 <a href="task_edit/task_edit.php">課題作成</a>
 <table class="table border">
@@ -55,16 +55,17 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
       <input type="hidden" name = "task_id" value="<?php echo $result['id']; ?>">
       <input type="hidden" name = "task_release" value="<?php echo $result['task_release']?>">
     <?php if($result['task_release'] == 0 && $result['quantity'] > 0):?>
-      <input type="submit" value="公開する">
+      <input type="submit" class="btn btn-outline-primary  py-2 px-3" value="公開する">
     <?php elseif($result['task_release'] == 1 && $result['quantity'] > 0): ?>
-      <input type="submit" value="非公開にする">
+      <input type="submit" class="btn btn-primary py-2 px-4" value="非公開にする">
     <?php else: ?>
         <p>問題を作成してください</p>
     <?php endif; ?>
   </form>
 </td>
 <td>
-  <a href='delete.php?task_id=<?php echo $result['id'] ?>'>削除</a>
+  <a href='delete.php?task_id=<?php echo $result['id'] ?>' 
+  class="btn btn-Danger py-2 px-4">削除</a>
 </td>
   </tr>
 <?php endwhile; ?>

@@ -22,14 +22,15 @@ $questoin_num = 1;
 
     <!-- ここから問題表示 -->
 <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): 
-    echo "<div class='content_list'>";
+    echo "<div class='question_form'>";
     echo $questoin_num.".";
     $questoin_num++;
 
     //画像は指定されているか?
-    if(h($result['file_name']) != null):
+    if($result['file_name'] != null):
   ?>
   <br>
+  <p><?php echo h($result['sentence']) ?></p>  
   <img src="../task_Mgmt/question_add/uploads/<?php echo $result['file_name'] ?>" width="200px">
   <?php
     endif;
@@ -38,22 +39,20 @@ $questoin_num = 1;
     if(h($result['type']) == 'select'):
       $select = explode(',',$result['choice']);
   ?>
-    <p><?php echo h($result['sentence']) ?></p>  
+    <br>
     <?php for($i=0;$i < count($select);$i++):?>
       <label><input type="radio" name='question<?php echo $result['number'] ?>' 
               value="<?php echo ($i+1) ?>" required><?php echo $select[$i] ?></label>
     <?php endfor; ?>
     <!-- 記述問題作成 -->
   <?php elseif($result['type'] == 'writing'): ?>
-    <p><?php echo $result['sentence'] ?></p>
-    <input name="question<?php echo $result['number'] ?>" required>
+      <input type="text" name="question<?php echo $result['number'] ?>" size="60" required>
   <?php endif; ?>
   </div>
-  <hr>
-  <br>
+  <hr>  
 <?php endwhile; ?>
 <!-- ここまで問題表示 -->
-<div class='content_list'>
-<input type = "submit" value="送信">
-  </div>
+<div style = "text-align:center">
+  <input type = "submit"  class="btn btn-primary  mb-5 py-2 px-4" value="送信">
+</div>
 </form>

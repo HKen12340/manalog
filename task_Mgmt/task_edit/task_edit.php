@@ -39,9 +39,9 @@
           <option value="#000099">青</option>
           <option value="green">緑</option>
         </select>
+  <input type="submit" class="btn btn-primary mt-4 mb-5 py-2 px-4" value="送信">
   </form>
   </div>
-  <input type="submit" value="送信">
   </div>
 </body>
 </html>

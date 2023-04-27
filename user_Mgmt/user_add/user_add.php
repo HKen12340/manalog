@@ -35,7 +35,7 @@
       <label>パスワード</label>
       <input type="password" name="password"  class="form-control" required = "required">
   </div>
-  <input type="submit" value = "登録">
+  <input type="submit" class="btn btn-primary py-2 px-4" value = "登録">
   </form>
   </div>
 </body>

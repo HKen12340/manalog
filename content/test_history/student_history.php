@@ -29,7 +29,7 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
     <form action="score_history.php" method="post">
       <input type="hidden" name="id" value=<?php echo $result['id'] ?>>
       <input type="hidden" name="name" value=<?php echo $result['name'] ?>>
-      <input type="submit" value="詳細">
+      <input type="submit" class="btn btn-primary py-2 px-4" value="詳細">
     </form>
   </td>
 </tr>

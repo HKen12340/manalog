@@ -37,6 +37,7 @@ $total_point = 0;
 
 $question_counter = 0;
 ?>
+<div class="score_table">
 <table>
   <tr>
     <th>番号</th>
@@ -53,7 +54,6 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
   $description = $result['sentence'];
   $max_point += $result['point'];
 
-  echo "<div class='content_list'>";
   echo "<td>".$q_num."</td>";
   echo "<td>".$result['sentence']."</td>";
   //正否判別
@@ -100,19 +100,9 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
      $stmt->bindValue(':id'.$i,$args[$i-1]['id']);
      $stmt->bindValue(':point'.$i,$args[$i-1]['point']);
    }
+   $stmt->execute();
+   echo "<p style='text-align:center'>".$max_point."/".$total_point."点</p>";
    ?>
 </table>
-   <?php
-  $stmt->execute();
-  echo "<div class='content_list'>";
-  echo $max_point."/".$total_point."点";
-  echo "</div>";
-?>
-<div class='content_list'>
-  <button id = "top_button">トップメニューへ戻る</button>
+<a href="../index.php">トップメニューへ戻る</a>
 </div>
-<script>
-  document.getElementById("top_button").addEventListener('click',function(){
-    location.href = "../index.php";
-  },false)
-</script>

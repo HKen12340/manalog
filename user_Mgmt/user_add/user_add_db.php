@@ -19,7 +19,7 @@ if($pdo == null){
   $stmt->bindValue(':class',$user_class);
   $stmt->bindValue(':number',$user_number);
   $stmt->bindValue(':email',$user_email);
-  $stmt->bindValue(':password',$user_password);
+  $stmt->bindValue(':password',password_hash($user_password, PASSWORD_DEFAULT));
   $stmt->bindValue(':authority',$authority);
 
   $stmt->execute();

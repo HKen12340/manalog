@@ -1,27 +1,33 @@
+<head>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
 <?php
 require '../../check.php';
 require '../../simple_header.php';
 
 $task_id =  $_POST['task_id'];
 $type = $_POST['question_type'];
-
- if($type == 'select'): ?>
+?>
+<div class="input_form">
+<?php if($type == 'select'): ?>
+  <h1>選択問題作成</h1>
 <form action='question_item_add_db.php' method='post' enctype="multipart/form-data">
-
+<div class="form-group">
   <input type='hidden' name='task_id'  value=<?php echo $task_id ?>>  
   <input type='hidden' name='question_type'  value=<?php echo $type ?>>
 
-  <p>問題文</p>
-  <textarea cols='30' rows='5' name='description' required></textarea>
+  <label>問題文</label>
+  <textarea name='description' class="form-control" required></textarea>
   </br>
   <input type='button' id='Addbutton' value='選択肢追加'>
     <div id='select_question'>
       
     </div>
     
-    <lebel>配点:<input type="number" name="point" required></lebel><br>
-    <lebel>画像：<input type="file" name="file" accept="image/*"></lebel>
-    <input type = 'submit' value = '登録'/>
+    <lebel>配点</lebel><input type="number" name="point" class="form-control" min = "1"; required>
+    <lebel>画像</lebel><input type="file" name="file" class="form-control-file" accept="image/*">
+    <input type = 'submit' class="btn btn-primary mt-3 py-2 px-4" value = '登録'/>
   </form>
   <script>
     let select_number = 1;
@@ -41,13 +47,13 @@ $type = $_POST['question_type'];
       input_label.appendChild(new_element);
 
       let radio_label = document.createElement('label');
-      radio_label.textContent = '正解の選択肢';
+      radio_label.textContent = '　正解の選択肢';
       let new_radio = document.createElement('input');
       new_radio.type = 'radio';
       new_radio.name = 'radio_select';
       new_radio.value = select_number;
       new_radio.required = true;
-      
+      new_radio.class = "radio_check_input";
      select_number++;
 
       radio_label.appendChild(new_radio);
@@ -60,16 +66,20 @@ $type = $_POST['question_type'];
     },false);  
   </script>
 <?php elseif($type == 'writing'): ?>
+  <h1>記述問題作成</h1>
   <form action='question_item_add_db.php' method='post' enctype="multipart/form-data">
   <input type='hidden' name='task_id'  value=<?php echo $task_id ?>>
   <input type='hidden' name='question_type'  value=<?php echo $type ?>>
-  <p>問題文</p>
-  <input type="text" name='description' required>
+  <label>問題文</label>
+  <textarea name='description' class="form-control" required></textarea>
   </br>
-   <p>解答</p>
-   <input type="text" name='answer' required>
-   <lebel>配点:<input type="number" name="point" required></lebel><br>
-    <lebel>画像：<input type="file" name="file" accept="image/*"></lebel>
-   <input type='submit' value='登録'/>
+   <label>解答</label>
+   <input type="text" name='answer' class="form-control" required>
+   <lebel>配点</lebel><input type="number" name="point" class="form-control" min="1" required>
+  <lebel>画像</lebel><input type="file" name="file" class="form-control-file" accept="image/*">
+    <input type='submit' class="btn btn-primary mt-3 py-2 px-4" value='登録'/>
+   </div>
    </form>
+
+   </div>
    <?php endif;?>

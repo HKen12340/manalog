@@ -24,11 +24,11 @@
        value=<?php if(!empty($_COOKIE['password'])){ echo $_COOKIE['password'];} ?>></td>
     
     <br>
-      <label>ログイン情報を保存</label><input type="checkbox" name="check" value="1" 
+      <label for="keep_data">ログイン情報を保存</label><input type="checkbox" id="keep_data" name="check" value="1" 
       <?php if(!empty($_COOKIE['login_keep'])){  echo 'checked';}?>></td>
       <br>
       <br>
-      <input type="submit"  value = "送信">
+      <input type="submit" class="btn btn-primary py-2 px-4" value = "送信">
     </div>
   </form>
   <?php setcookie('PHPSESSID','',time()-1800,'/'); ?>

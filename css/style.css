@@ -25,3 +25,39 @@
 .content_list{
   margin-left:20px;
 }
+
+.score_table{
+  margin: auto;
+  width: 75%;
+  height: 100px;
+}
+
+.score_table table{
+  width: 100%;
+}
+.score_table td{
+  height: 100px;
+}
+.score_table td:nth-child(1),td:nth-child(3){
+  width: 5%;
+}
+
+.score_table td:nth-child(2){
+  text-align: justify;
+}
+
+.score_table td:nth-child(4),td:nth-child(5){
+  width: 10%;
+}
+
+.question_area{
+  width: 80%;
+  margin: auto;
+}
+
+.question_form{
+  width: 50%;
+  padding: 0 5% 0 5%;
+  margin: auto;
+}
+
