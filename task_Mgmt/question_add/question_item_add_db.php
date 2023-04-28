@@ -23,6 +23,7 @@ if($_FILES["file"]["tmp_name"] != null){ //ファイルがアップされてい�
 
   if(in_array($fileType,$allowTypes)){//拡張子チェック
     $fileName = $task_id."_".$number.".".substr($_FILES['file']['type'],6);//拡張子取得
+
     move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);//ファイルアップロード
   }else{
     //保留

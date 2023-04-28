@@ -12,7 +12,7 @@
 <?php require 'header.php' ?>
 <?php date_default_timezone_set('Asia/Tokyo');  ?>
 <body>
-     
+     <!-- スケジュール表示ここから -->
     <table class="test_table">
       <tr>
         <?php for($i=0;$i<7;$i++): ?>
@@ -21,6 +21,7 @@
       </tr>
       <?php while($result = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
       <tr>
+        <!-- 課題表示ここから -->
         <?php 
           $flag = 0;
           for($i=0;$i<7;$i++): 
@@ -40,6 +41,7 @@
             <?php echo $result['task_name']?>
           </a>
         </td> 
+        <!-- 課題表示ここまで -->
           <?php endif; ?>
         <?php else: ?>
           <td>　</td>
@@ -48,6 +50,7 @@
     </tr>
     <?php endwhile; ?>
   </table>
+  <!-- スケジュール表示ここまで -->
   <hr>
   <p>© 2023 Example Inc. All Rights Reserved.</p>
 </body>

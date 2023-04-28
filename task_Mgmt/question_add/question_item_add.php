@@ -1,7 +1,6 @@
 <head>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
-
 <?php
 require '../../check.php';
 require '../../simple_header.php';
@@ -10,6 +9,7 @@ $task_id =  $_POST['task_id'];
 $type = $_POST['question_type'];
 ?>
 <div class="input_form">
+<!-- 選択問題ここから -->
 <?php if($type == 'select'): ?>
   <h1>選択問題作成</h1>
 <form action='question_item_add_db.php' method='post' enctype="multipart/form-data">
@@ -22,15 +22,19 @@ $type = $_POST['question_type'];
   </br>
   <input type='button' id='Addbutton' value='選択肢追加'>
     <div id='select_question'>
-      
+      <div>
+        <label>選択肢1<input type="text" name="name[]" required></label>
+        <label>　正解の選択肢<input type="radio" name="radio_select" value="1" required></label>
+      </div>
     </div>
     
-    <lebel>配点</lebel><input type="number" name="point" class="form-control" min = "1"; required>
+    <lebel>配点</lebel><input type="number" name="point" class="form-control" min = "1" required>
     <lebel>画像</lebel><input type="file" name="file" class="form-control-file" accept="image/*">
     <input type = 'submit' class="btn btn-primary mt-3 py-2 px-4" value = '登録'/>
   </form>
   <script>
-    let select_number = 1;
+    //あらかじめ選択肢を1つ出しておくためselect_numberは2から始める
+    let select_number = 2;
     let add_select = document.getElementById('Addbutton');
 
     add_select.addEventListener('click',function(){
@@ -65,6 +69,9 @@ $type = $_POST['question_type'];
      }
     },false);  
   </script>
+  <!-- 選択問題ここまで -->
+
+  <!-- 記述問題ここから -->
 <?php elseif($type == 'writing'): ?>
   <h1>記述問題作成</h1>
   <form action='question_item_add_db.php' method='post' enctype="multipart/form-data">
@@ -80,6 +87,6 @@ $type = $_POST['question_type'];
     <input type='submit' class="btn btn-primary mt-3 py-2 px-4" value='登録'/>
    </div>
    </form>
-
-   </div>
+  </div>
    <?php endif;?>
+   <!-- 記述問題ここまで -->

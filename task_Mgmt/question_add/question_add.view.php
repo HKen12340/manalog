@@ -8,8 +8,9 @@
   <title>Document</title>
 </head>
 <body>
-  <?php require '../../check.php'; ?>
-  <?php '../../header.php' ?>
+  <?php require_once '../../check.php'; ?>
+  <?php require_once '../../header.php' ?>
+  <?php require_once '../../dbconnect.php'; ?>
 <?php error_reporting(0); ?>
 
 <div class="question_area">
@@ -51,7 +52,7 @@
       <input type='submit' class="btn btn-primary py-2 px-4" value='編集'/><br>
     </form>
     
-    <form action='question_update/question_item_delete.php' method='post'>
+    <form action='question_item_delete.php' method='post'>
       <input type='hidden' name='task_id' value= <?php echo $_GET['task_id'] ?>>
       <input type='hidden' name='number' value=<?php echo $result2['number'] ?>>
       <input type="submit" class="btn btn-Danger mt-2 py-2 px-4" value="削除"> 

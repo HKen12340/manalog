@@ -15,10 +15,6 @@ session_start();
 
 //SQl関連
 $task_sql = 'select task_name from task WHERE id = :task_id';
-              // $select_sql = 'select DISTINCT a.user_id,a.task_id,
-              // a.answer_count,b.answer_limit,b.task_name from answer a
-              // INNER JOIN task b  ON a.task_id = b.id and
-              // a.task_id = :task_id and a.user_id = :id';
 $stmt1 = $pdo->prepare($task_sql);
 $stmt1->bindValue(':task_id',$_GET['task_id']);
 $stmt1->execute();
