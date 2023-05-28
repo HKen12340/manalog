@@ -7,9 +7,10 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':email',$_POST['email']);
 $stmt->execute();
 
-while($result = $stmt->fetch(PDO::FETCH_ASSOC)){  
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if(password_verify($_POST['password'],$result['password'])){    
   
-  if(password_verify($_POST['password'],$result['password'])){
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
     $_SESSION['class'] = $result['class'];
@@ -27,7 +28,6 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     }
       header('Location:index.php');
       exit();
-  }else{
+}else{
      header('Location:login.view.php');
-   }
 }

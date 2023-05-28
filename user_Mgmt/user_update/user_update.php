@@ -6,10 +6,11 @@
 <?php
 require '../../dbconnect.php';
 require '../../check.php';
+CheckAuthority();
+
 require '../../header.php';
 
 $user_id = $_POST['id'];
-
 $sql = 'select * from user_info where id = ?';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($user_id));

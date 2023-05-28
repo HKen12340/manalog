@@ -10,6 +10,8 @@
 <body>
   <?php 
     require '../../../check.php';
+    CheckAuthority();
+    
     require '../../../header.php';
   ?>
 <a href="../question_add.php?task_id=<?php echo $_POST['task_id'] ?>">問題一覧へ戻る</a>

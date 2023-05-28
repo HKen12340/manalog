@@ -1,6 +1,7 @@
 <?php
 require '../dbconnect.php';
 require '../check.php';
+CheckAuthority();
 
 $task_release = 0;
 if($_POST['task_release'] == 0){

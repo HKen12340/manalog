@@ -1,6 +1,7 @@
 <?php
 require '../../dbconnect.php';
 require '../../check.php';
+CheckAuthority();
 
 $task_id = h($_POST['task_id']);
 $number = h($_POST['number']);

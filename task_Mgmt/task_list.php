@@ -1,6 +1,7 @@
 <?php
 require '../dbconnect.php';
 require '../check.php';
+CheckAuthority();
 require '../header.php' ;
 $sql = 'select * from task order by id desc';
 

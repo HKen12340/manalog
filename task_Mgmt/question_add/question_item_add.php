@@ -3,6 +3,7 @@
 </head>
 <?php
 require '../../check.php';
+CheckAuthority();
 require '../../simple_header.php';
 
 $task_id =  $_POST['task_id'];

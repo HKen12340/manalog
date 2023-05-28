@@ -1,6 +1,7 @@
 <?php
   require('../../dbconnect.php');
   require '../../check.php';
+  CheckAuthority();
   $user_name = h($_POST['name']);
   $user_class = h($_POST['class']);
   $user_number = h($_POST['number']);
@@ -8,6 +9,8 @@
   $user_password = h($_POST['password']);
   $user_id = h($_POST['id']);
 
+  isUniqueValue($pdo, $user_email, $user_number, $user_class);
+  
   $sql = 'update user_info set name = :name,class = :class,number = :number,
   email = :email,password = :password where id = :id';
   $stmt = $pdo->prepare($sql);

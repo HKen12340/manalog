@@ -1,6 +1,7 @@
 <?php
 require '../../../dbconnect.php';
 require '../../../check.php';
+CheckAuthority();
 
 $sentence = h($_POST['sentence']);
 $answer = h($_POST['answer']);
@@ -13,8 +14,8 @@ $sql = 'update question set sentence = :sentence,choice=:choice,answer = :answer
 $stmt = $pdo->prepare($sql);
 
 if(h($_POST['type'])=='select'){
-$select_csv = implode(',',$_POST['select']);
-$stmt->bindValue(':choice',$select_csv);
+  $select_csv = implode(',',$_POST['select']);
+  $stmt->bindValue(':choice',$select_csv);
 }else{
   $stmt->bindValue(':choice',null);
 }

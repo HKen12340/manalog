@@ -8,7 +8,10 @@
   <title>Document</title>
 </head>
 <body>
-  <?php  require '../../check.php';?>
+  <?php  
+  require '../../check.php';
+  CheckAuthority();
+  ?>
   <?php require '../../simple_header.php'; ?>
 
   <div class="input_form">

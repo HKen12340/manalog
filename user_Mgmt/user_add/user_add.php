@@ -8,7 +8,10 @@
   <title>Document</title>
 </head>
 <body>
-  <?php require '../../check.php'; ?>
+  <?php 
+    require '../../check.php'; 
+    CheckAuthority();
+  ?>
   <?php require '../../simple_header.php'; ?>
   
   <div class="input_form">
@@ -29,9 +32,9 @@
             <option value="T">教員</option>
           </select>
       <label>出席番号</label>
-      <input type="text" name="number" class="form-control" required = "required">
+      <input type="number" name="number" class="form-control" required = "required">
       <label>メールアドレス</label>
-      <input type="text" name = "email" class="form-control" required = "required">
+      <input type="email" name = "email" class="form-control" required = "required">
       <label>パスワード</label>
       <input type="password" name="password"  class="form-control" required = "required">
   </div>

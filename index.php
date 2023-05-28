@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'dbconnect.php';
-require 'check.php';
+require_once 'check.php';
 
 $sql = 'select * from task WHERE task_release	= 1 and class = :class';
 $stmt = $pdo->prepare($sql);

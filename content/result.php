@@ -89,18 +89,24 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     echo "</tr>";
 }
 
+try{
   $insert_sql = substr($insert_sql,0,-1);
   $insert_sql .= ';';
   $stmt = $pdo->prepare($insert_sql);
-  
    for($i=1;$i<$question_counter;$i++){
-     $stmt->bindValue(':task_id'.$i,$args[$i-1]['task_id']);
-     $stmt->bindValue(':number'.$i,$args[$i-1]['number']);
-     $stmt->bindValue(':question'.$i,$args[$i-1]['question']);
-     $stmt->bindValue(':id'.$i,$args[$i-1]['id']);
-     $stmt->bindValue(':point'.$i,$args[$i-1]['point']);
+     $stmt->bindValue(':task_id'.$i, $args[$i-1]['task_id']);
+     $stmt->bindValue(':number'.$i, $args[$i-1]['number']);
+     $stmt->bindValue(':question'.$i, $args[$i-1]['question']);
+     $stmt->bindValue(':id'.$i, $args[$i-1]['id']);
+     $stmt->bindValue(':point'.$i, $args[$i-1]['point']);
    }
+
    $stmt->execute();
+  }catch(PDOException $e){
+    echo $e->getMessage()."-".$e->getLine().PHP_EOL;
+    echo "エラーが発生しました。管理者にお問い合わせください";
+  }
+
    echo "<p style='text-align:center'>".$max_point."/".$total_point."点</p>";
    ?>
 </table>

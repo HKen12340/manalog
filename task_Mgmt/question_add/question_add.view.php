@@ -8,7 +8,10 @@
   <title>Document</title>
 </head>
 <body>
-  <?php require_once '../../check.php'; ?>
+  <?php 
+  require_once '../../check.php';
+  CheckAuthority();
+  ?>
   <?php require_once '../../header.php' ?>
   <?php require_once '../../dbconnect.php'; ?>
 <?php error_reporting(0); ?>
