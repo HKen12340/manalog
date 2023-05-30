@@ -26,7 +26,19 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
         <label>名前</label>
         <input type="text" name="name" class="form-control" value="<?php echo $result['name'] ?>" required>
         <label>クラス</label>
-        <input type="text" name="class" class="form-control" value="<?php echo $result['class'] ?>">
+        <select name="class" class="form-control">
+          <?php
+          $class = ['1T1','1T2','1T3'];
+          foreach($class as $c){
+            if($c == $result['class']){
+              echo "<option value= ". $c ." selected>". $c ."</option>";  
+            }else{
+              echo "<option value= ". $c .">". $c ."</option>";
+            }
+          }
+          ?>
+        </select>
+        
         <label>番号</label>
         <input type="number" name="number" class="form-control" value="<?php echo $result['number'] ?>" required>
         <label>email</label>
