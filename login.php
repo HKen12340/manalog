@@ -2,12 +2,16 @@
 session_start();
 require 'dbconnect.php';
 
-$sql = 'select * from user_info where email = :email';
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':email',$_POST['email']);
-$stmt->execute();
+try{
+  $sql = 'select * from user_info where email = :email';
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindValue(':email',$_POST['email']);
+  $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+}catch(PDOException $e){
+  echo 'エラーが発生しました。管理者にお問い合わせください';
+}
 
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if(password_verify($_POST['password'],$result['password'])){    
   
